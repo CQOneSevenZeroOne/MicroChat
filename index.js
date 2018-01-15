@@ -15,16 +15,15 @@ import setup from './component/outer/setup.vue'
 import reglog from './component/outer/reglog.vue'
 import addfriend from './component/outer/addfriend.vue'
 import search from './component/outer/search.vue'
-
+import login from './component/outer/login.vue'
+import register from './component/outer/register.vue'
 //tabchildren
 import wechat from './component/tabchildren/wechat.vue'
 import maillist from './component/tabchildren/maillist.vue'
 import discover from './component/tabchildren/discover.vue'
 import mine from './component/tabchildren/mine.vue'
 
-//reglog
-import login from './component/reglog/login.vue'
-import register from './component/reglog/register.vue'
+
 
 //状态管理
 import Vuex from 'vuex';
@@ -53,14 +52,15 @@ var router=new VueRouter({
     },
     {
         path:"/reglog",
-        component:reglog,
-        children:[{
-            path:"register",
-            component:register
-        },{
-            path:"login",
-            component:login
-        }]
+        component:reglog
+    },
+    {
+        path:"/login",
+        component:login
+    },
+    {
+        path:"/register",
+        component:register
     },
     {
         path:"/setup",
