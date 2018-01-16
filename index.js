@@ -8,7 +8,7 @@ Vue.use(VueRouter);
 
 //outer
 import totaltab from './component/outer/totaltab.vue'
-import dialogo from './component/outer/dialog.vue'
+import dialog from './component/outer/dialog.vue'
 import fridetail from './component/outer/fridetail.vue'
 import personalinfo from './component/outer/personalinfo.vue'
 import setup from './component/outer/setup.vue'
@@ -48,8 +48,8 @@ var router=new VueRouter({
             component:mine
         }]
     },{
-        path:"/dialogo",
-        component:dialogo
+        path:"/dialog",
+        component:dialog
     },
     {
         path:"/reglog",
@@ -65,15 +65,15 @@ var router=new VueRouter({
     },
     {
         path:"/setup",
-        componnet:setup
+        component:setup
     },
     {
         path:"/fridetail",
-        componnet:fridetail
+        component:fridetail
     },
     {
         path:"/personalinfo",
-        componnet:personalinfo
+        component:personalinfo
     },
     {
         path:"/addfriend",
