@@ -105,7 +105,7 @@ var store= new Vuex.Store({
 new Vue({
     el:"#app",
     template:`
-        <div>
+        <div id="box">
             <router-view></router-view>
         </div> 
     `,
