@@ -1,6 +1,6 @@
 <template>
   <div id="loginbg">
-
+    
   </div>
 </template>
 <script>

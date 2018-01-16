@@ -64,15 +64,15 @@ var router=new VueRouter({
     },
     {
         path:"/setup",
-        componnet:setup
+        component:setup
     },
     {
         path:"/fridetail",
-        componnet:fridetail
+        component:fridetail
     },
     {
         path:"/personalinfo",
-        componnet:personalinfo
+        component:personalinfo
     },
     {
         path:"/addfriend",
