@@ -17,6 +17,7 @@ import addfriend from './component/outer/addfriend.vue'
 import search from './component/outer/search.vue'
 import login from './component/outer/login.vue'
 import register from './component/outer/register.vue'
+import adddetail from './component/outer/adddetail.vue'
 //tabchildren
 import wechat from './component/tabchildren/wechat.vue'
 import maillist from './component/tabchildren/maillist.vue'
@@ -77,6 +78,10 @@ var router=new VueRouter({
     {
         path:"/addfriend",
         component:addfriend
+    },
+    {
+        path:"/adddetail",
+        component:adddetail
     },
     {
         path:"/search",
