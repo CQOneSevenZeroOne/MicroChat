@@ -15,6 +15,7 @@
     "babel-loader": "^8.0.0-beta.0",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.8",
+    "express": "^4.16.2",
     "file-loader": "^1.1.6",
     "fs": "^0.0.1-security",
     "html-loader": "^0.5.4",
@@ -23,9 +24,12 @@
     "jquery.cookie": "^1.4.1",
     "json-loader": "^0.5.7",
     "mysql": "^2.15.0",
+<<<<<<< HEAD
     "net": "^1.0.2",
     "socket": "^0.0.1",
     "socket.io": "^2.0.4",
+=======
+>>>>>>> 1a6949b8799af9781f191035d73b25ec28ac5268
     "style-loader": "^0.19.1",
     "text-loader": "^0.0.1",
     "url-loader": "^0.6.2",
