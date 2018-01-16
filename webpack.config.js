@@ -63,7 +63,8 @@ module.exports = {
     // 替换vue的加载路径
     resolve: {
         alias: {
-            vue: "vue/dist/vue.js"
+            vue: "vue/dist/vue.js",
+            socket:"socket.io-client/dist/socket.io.js"
         }
     },
     // watch: true,

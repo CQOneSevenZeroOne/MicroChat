@@ -2,23 +2,46 @@
 	<div id="dialog">
 		<div class="header">
 		    <div class="side"><a href="#/totaltab/wechat"><i class="iconfont icon-zuojiantou"></i> 微信</a></div>
-		    <p>刘松</p>
+		    <p v-text="p"></p>
 		    <div class="side"><i class="iconfont icon-wo"></i></div>
 		</div>
-		<div class="section"></div>
+		<div class="section">
+			<p>12345</p>
+		</div>
 		<div class="footer">
-			<div>yuyin</div>
 			<input type="text" name="txt" v-model="val">
-			<button type="button">发送</button>
+			<button type="button" @click="sendMess">发送</button>
 		</div>
 	</div>
 </template>
 <script>
+	import $ from "jquery";
+	import io from "socket";
+	var socket = io("http://localhost:12346");
 	export default{
 		data(){
 			return {
-				val:"",
+				val:"123",
+				p:"刘松"
 			}
+		},
+		methods:{
+			sendMess(){
+				var _this = this;
+				/*console.log(this.$store.state.myId);*/
+				console.log(this.val);
+				socket.emit("sendMess",{
+					id:_this.$store.state.myId,
+					message:_this.val
+				})
+			}
+
+		},
+		mounted(){
+			console.log(this.$store.state.myId);
+			socket.on("returnMess",function(data){
+				document.querySelector(".section").innerHTML+=(`<p>${data.message}</p>`);
+			})
 		}
 	}
 </script>
@@ -27,7 +50,7 @@ html,body{font-size: 62.5%;}
 	#dialog{
 		position: relative;
 		height: 100%;
-		background: #ccc;
+
 	}
 	.header{
 		  position:fixed;
@@ -36,7 +59,7 @@ html,body{font-size: 62.5%;}
 		  text-align: center;
 		  width: 100%;
 		  background: linear-gradient(180deg, #303036, #3c3b40);
-		  font-size: 19px;
+		  font-size: 1rem;
 		  height: 3rem;
 		  color: #fff;
 		  display: flex;
@@ -48,6 +71,12 @@ html,body{font-size: 62.5%;}
 	.side{
 		padding: 0 10px;
 	}
+	.section{
+		margin-top: 3rem;
+		margin-bottom: 1px;
+		background: #efeff4;
+		min-height: 39rem;
+	}
 	.footer{
 		position: fixed;
 		bottom: 0;
@@ -55,12 +84,25 @@ html,body{font-size: 62.5%;}
 		width: 100%;
 		box-sizing: border-box;
 		display: flex;
-		justify-content: flex-start;
-		padding: 5px;
+		justify-content: space-between;
+		padding: 0.25rem;
 		border: 1px solid #7d7e83;
+		background: #fff;
+		line-height: 3rem;
 	}
 	.footer input{
-		height: 2.5rem;
+		height: 2.4rem;
 		box-sizing: border-box;
+		border: 1px solid #7d7e83;
+		width: 86%;
+		outline: none;
+	}
+	.footer button{
+		height: 2.4rem;
+		width: 12%;
+		border-radius: 5px;
+		background: green;
+		color: #fff;
+		align-items: flex-end;
 	}
 </style>

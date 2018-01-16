@@ -2,6 +2,7 @@ import Vue from "vue";
 import "weui";
 import "./font/iconfont.css"; 
 import "./template/base.css";
+
 //路由
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -95,10 +96,11 @@ var router=new VueRouter({
 })
 
 //配置状态
-var store= new Vuex.Store({
+var store = new Vuex.Store({
     state:{
         bool:true,
-        title:"标题"
+        myId:"",
+        youId:""
     }
 })
 
