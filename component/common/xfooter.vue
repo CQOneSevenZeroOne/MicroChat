@@ -41,12 +41,16 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
     i{
         line-height: 1;
     }
     .fontColor{
         color:#09BB07;
+    }
+    .weui-tabbar{
+        position: fixed;
+        
     }
 </style>
 
