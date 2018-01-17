@@ -18,7 +18,7 @@
 	import $ from "jquery";
 	import "jquery.cookie";
 	import io from "socket";
-	var socket = io("http://localhost:12346");
+	var socket = io("http://localhost:1701");
 	export default{
 		data(){
 			return {
@@ -40,6 +40,7 @@
 						user:_this.$store.state.myId
 					})
 				})
+				this.val = "";
 				/*socket.emit("sendMess",{
 					id:_this.$store.state.myId,
 					message:_this.val
@@ -100,6 +101,13 @@ html,body{font-size: 62.5%;}
 		margin-bottom: 1px;
 		background: #efeff4;
 		min-height: 39rem;
+	}
+	.section p{
+		line-height: 2.5rem;
+	}
+	.section p img{
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 	.footer{
 		position: fixed;

@@ -49,5 +49,5 @@ io.on("connection",function(socket){
 		
 	})
 })
-server.listen(12346);
+server.listen(1701);
 console.log("开启服务器");
