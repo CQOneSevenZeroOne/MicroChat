@@ -88,7 +88,8 @@ export default {
               if(self.userpass==data[0].userPass){
                 var obj={
                   "userId":data[0].userId,
-                  "userName":data[0].userName
+                  "userName":data[0].userName,
+                  "userNum":data[0].userNum
                   };
                 $.cookie("user",JSON.stringify(obj));
                 self.isLogin=true;

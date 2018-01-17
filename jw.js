@@ -1,4 +1,5 @@
 var express = require("express");
+var app = express();
 var mysql = require("mysql");
 var url = require("url");
 var multer = require ("multer");
@@ -6,7 +7,7 @@ var querystring  = require("querystring");
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
 //实例化express
-var app = express();
+
 app.use(express.static('../userlogo'));
 var connection = mysql.createConnection({
 		host:"10.40.153.231",
@@ -203,7 +204,49 @@ app.post("/updateMark",function(req,res){
             res.send(JSON.stringify(results));
     })
 })
-
+//----------------------------------liu-----------------------------------------
+var userlist = {};
+io.on("connection",function(socket){
+    console.log(socket.id);
+    socket.on("adduser",function(user){
+        userlist["userNum"]=user;
+        userlist["id"]=socket.id;
+        io.emit("showlist",userlist);
+    })
+    socket.on("setSocketId",function(data){
+        console.log(data);
+        connection.query(`update userInfo set userSocketId = '${data.socketId}' where userNum = '${data.userNum}'`,function(error,result){
+            if(error) throw error;
+            console.log('success');
+        })
+    })
+    socket.on("gettou",function(data){
+        connection.query(`select userImg from userInfo where userId = ${data}`,function(error,result){
+            if(error) throw error;
+            socket.emit("givetou",result[0].userImg);
+        })
+    })
+    socket.on("getSocketId",function(data){
+        connection.query(`select userSocketId from userInfo where userId = ${data}`,function(error,result){
+            if(error) throw error;
+            console.log(1);
+            console.log(result);
+            socket.emit("giveSocketId",result[0].userSocketId);
+        })
+    })
+    socket.on("send",function(data){
+        console.log(data);
+        connection.query(`select userImg from userInfo where userId = ${data.user}`,function(error,result){
+            if(error) throw error;
+            console.log(2);
+            io.sockets.sockets[data.id].emit("returnMess",{
+                message:data.message,
+                user:result[0].userImg
+            })
+        })
+        
+    })
+})
 function timeChange(){ 
     var time = new Date();
     return ""+time.getFullYear()+stringNum(time.getMonth())+stringNum(time.getDate())+stringNum(time.getHours())+stringNum(time.getMinutes())+stringNum(time.getSeconds())+"";
@@ -214,5 +257,5 @@ function stringNum(ti){
     }
     return ti;
 }
-app.listen(1701);
+server.listen(1701);
 console.log("开启服务器");

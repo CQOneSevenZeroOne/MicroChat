@@ -65,6 +65,7 @@ export default {
   methods:{
       send(){
           this.$store.state.friend=this.obj.friId;
+          this.$store.state.fremark=this.obj.remark;
       },
       updatemark(){
           var _this = this;
