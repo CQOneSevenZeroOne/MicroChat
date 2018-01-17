@@ -55,7 +55,17 @@ app.post("/checkfriend",function(req,res){
 //查询朋友表中的数据
 app.get("/findall",function(req,res){
     res.append("Access-Control-Allow-Origin","*");
-     let sql =`SELECT b.friId,a.userImg,b.remark,b.accstatus FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus!=0`;
+     let sql =`SELECT b.friId,a.userImg,b.remark,b.accstatus FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus!=0  ORDER BY b.addtime DESC`;
+     connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+    })
+})
+
+//查询朋友表中的数据   显示列表
+app.get("/friendList",function(req,res){
+    res.append("Access-Control-Allow-Origin","*");
+     let sql =`SELECT b.friId,a.userImg,b.remark FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus=2 ORDER BY CONVERT(b.remark USING gbk) ASC`;
      connection.query(sql,function(error,results,fields){
             if (error) throw error;
             res.send(JSON.stringify(results));
@@ -63,25 +73,25 @@ app.get("/findall",function(req,res){
 })
 
 
-//修改朋友表中的状态(当已发送过了)
+//修改朋友表中的状态(当已发送过了)  0
 app.post("/updatestatus",function(req,res){
 	res.append("Access-Control-Allow-Origin","*");
     //req.body是post传输的数据
-    var time = new Date();
-    var timestring = ""+time.getFullYear()+time.getMonth()+time.getDate()+time.getHours()+time.getMinutes()+time.getSeconds()+"";    
+    var timestring =timeChange();
     var sql=`update friends set addTime=${timestring} where friId=${req.body.userId} and userId=${req.body.friId}`;
 	 connection.query(sql,function(error,results,fields){
             if (error) throw error;
-            res.send("success");
-            
+    })
+    var sql=`update friends set remark='${req.body.remark}',addTime=${timestring} where userId=${req.body.userId} and friId=${req.body.friId}`;
+	 connection.query(sql,function(error,results,fields){
+            if (error) throw error;
     })
 })
-//修改朋友表中的状态（朋友邀请了）
+//修改朋友表中的状态（朋友邀请了）  1
 app.post("/updatestatus1",function(req,res){
 	res.append("Access-Control-Allow-Origin","*");
     //req.body是post传输的数据
-    var time = new Date();
-    var timestring = ""+time.getFullYear()+time.getMonth()+time.getDate()+time.getHours()+time.getMinutes()+time.getSeconds()+"";    
+    var timestring =timeChange();
     var sql=`update friends set remark='${req.body.remark}' where userId=${req.body.userId} and friId=${req.body.friId}`;
 	 connection.query(sql,function(error,results,fields){
             if (error) throw error; 
@@ -91,5 +101,35 @@ app.post("/updatestatus1",function(req,res){
             if (error) throw error;   
     })
 })
+//同意添加好友  1req.query.userId
+app.get("/aggreAdd",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    var timestring =timeChange();
+    var sql1=`update friends set accstatus=2,addTime=${timestring} where userId=${req.query.userId} and friId=${req.query.friId}`;
+	 connection.query(sql1,function(error,results,fields){
+            if (error) throw error; 
+    })
+    var sql2=`update friends set addTime=${timestring},accstatus=2 where friId=${req.query.userId} and userId=${req.query.friId}`;
+	 connection.query(sql2,function(error,results,fields){
+            if (error) throw error;   
+    })
+    let sql3 =`SELECT b.friId,a.userImg,b.remark,b.accstatus FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus!=0 ORDER BY b.addtime DESC`;
+     connection.query(sql3,function(error,results,fields){
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+    })
+})
+
+function timeChange(){ 
+    var time = new Date();
+    return ""+time.getFullYear()+stringNum(time.getMonth())+stringNum(time.getDate())+stringNum(time.getHours())+stringNum(time.getMinutes())+stringNum(time.getSeconds())+"";
+}
+function stringNum(ti){
+    if(ti<10){
+        ti="0"+ti;
+    }
+    return ti;
+}
 app.listen(1701);
 console.log("开启服务器");

@@ -10,12 +10,12 @@
         </div>
       </a>
       <div class="list_con">
-      <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="i in arr1">
+      <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="i in obj">
         <div class="weui-media-box__hd img1">
-            <img class="weui-media-box__thumb" :src="i.img">
+            <img class="weui-media-box__thumb" :src="i.userImg">
         </div>
         <div class="weui-media-box__bd">
-            <h4 class="weui-media-box__title" v-text="i.name">标题一</h4>
+            <h4 class="weui-media-box__title" v-text="i.remark"></h4>
         </div>
       </a>
       </div>
@@ -27,7 +27,7 @@ import addfriend from "../../img/addfriend.jpg";
 import friendstalk from "../../img/friendstalk.jpg";
 import label from "../../img/label.jpg";
 import sumnumber from "../../img/sumnumber.jpg";
-
+import $ from "jquery";
 export default {
   components: {
     searchbar
@@ -59,7 +59,9 @@ export default {
           img: sumnumber,
           href:"#"
         }
-      ]
+      ],
+      obj:[],
+      cookeId:4
     };
   },
   methods: {
@@ -68,7 +70,21 @@ export default {
         location.href = "#/addfriend";
       }
     }
-  }
+  },
+  mounted(){
+        //页面加载好友
+        var _this = this;
+        $.ajax({
+            url:"http://localhost:1701/friendList",
+            type:"GET",
+            data:{
+                userId:_this.cookeId
+            },
+            success(data){
+                _this.obj=JSON.parse(data);
+            }
+        })
+    }
 };
 </script>
 <style scoped>

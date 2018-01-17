@@ -8,7 +8,7 @@
                 <div class="weui-search-bar__box">
                     <i class="weui-icon-search" ></i>
                     <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="手机号或微信号" v-model="findvalue">
-                    <a href="javascript:" class="weui-icon-clear" id="searchClear" ></a>
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear" @click="clearinput"></a>
                 </div>
                 <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
                     <i class="weui-icon-search"></i>
@@ -50,7 +50,8 @@ export default {
       findvalue:"",       //输入框值
       obj:{},         
       remark:"",       //备注名
-      isfriend:true     //是否是未添加朋友
+      isfriend:true,     //是否是未添加朋友
+      cookeId:4
     }
   },
   methods:{
@@ -98,8 +99,9 @@ export default {
                 _this.fifind=false;
                 _this.obj=JSON.parse(data)[0];
                 _this.remark=_this.obj.userName;
+                var status = _this.isSend(_this.cookeId,_this.obj.userId);
                 //搜索用户是否是自己
-                if(_this.obj.userId==6){
+                if(_this.obj.userId==_this.cookeId || status==2){
                   _this.isfriend=false;
                 }else{
                   _this.isfriend=true;
@@ -115,20 +117,21 @@ export default {
     addfriend(){
       var _this = this;
       var newmark="";
-      var status = this.isSend(6,this.obj.userId); 
+      var uid = this.cookeId;
+      var status = this.isSend(uid,this.obj.userId); 
       console.log(status)
       if(this.remark!=""){
           newmark=this.remark;
         }else{
           newmark=this.obj.userName;
         }
-      //不是好友，且未发送好友申请
+      //不是好友
       if(status=="null"){
         $.ajax({
               url:"http://localhost:1701/addfriend",
               type:"POST",
               data:{
-                  userId:6,
+                  userId:uid,
                   friId:_this.obj.userId,
                   remark:newmark,
                   userName:"啊打发电商"
@@ -137,23 +140,36 @@ export default {
                 console.log(data);
               }
         })
+        //已发送过好友请求
       }else if(status==0){
-
+        console.log(newmark);
         $.ajax({
             url:"http://localhost:1701/updatestatus",
             type:"POST",
             data:{
-                userId:6,
+                userId:uid,
                 friId:_this.obj.userId,
-                remark:newmark,
-                userName:"啊打发电商"
-            },
-            success(data){
-              console.log(data);
+                remark:newmark
+            }
+        })
+        //未接受对方好友请求，向对方发送请求
+      }else if(status==1){
+        $.ajax({
+            url:"http://localhost:1701/updatestatus1",
+            type:"POST",
+            data:{
+                userId:uid,
+                friId:_this.obj.userId,
+                remark:newmark
             }
         })
       }
       
+    },
+    //清空输入框操作
+    clearinput(){
+      this.findvalue="";
+      this.isobj=false;
     }
 
   }
