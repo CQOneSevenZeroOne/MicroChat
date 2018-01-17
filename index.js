@@ -104,8 +104,12 @@ var store = new Vuex.Store({
     state:{
         bool:true,
         myId:"",
+<<<<<<< HEAD
         youId:"",
         friend:0
+=======
+        friend:4
+>>>>>>> 28c1d4a79fc0e71478ac4efea580bd51a7b8ef39
     }
 })
 
