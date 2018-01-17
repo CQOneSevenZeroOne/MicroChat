@@ -1,13 +1,20 @@
 <template>
 	<div id="dialog">
-	
+		<div class="header">
+		    <div class="side"><a href="#/totaltab/wechat"><i class="iconfont icon-zuojiantou"></i> 微信</a></div>
+		    <p v-text="p"></p>
+		    <div class="side"><i class="iconfont icon-wo"></i></div>
+		</div>
+		<div class="section">
+			<p>12345</p>
+		</div>
+		<div class="footer">
+			<input type="text" name="txt" v-model="val">
+			<button type="button" @click="sendMess">发送</button>
+		</div>
 	</div>
 </template>
 <script>
-<<<<<<< HEAD
-
-</script>
-=======
 	import $ from "jquery";
 	import "jquery.cookie";
 	import io from "socket";
@@ -24,13 +31,13 @@
 				var _this = this;
 				/*console.log(this.$store.state.myId);*/
 				console.log(this.val);
-				socket.emit("getSocketId","jian123");
+				socket.emit("getSocketId",this.$store.state.friend);
 				socket.on("giveSocketId",function(data){
 					console.log(data);
 					socket.emit("sendMess",{
 						id:data,
 						message:_this.val,
-						user:"dong123"
+						user:_this.$store.state.myId
 					})
 				})
 				/*socket.emit("sendMess",{
@@ -38,14 +45,16 @@
 					message:_this.val
 				})*/
 			}
-
 		},
 		mounted(){
 			var _this = this;
+			var myobj = JSON.parse($.cookie("user"));
+			this.$store.state.myId = myobj.userId;
+			this.p = myobj.userName;
 			/*console.log(_this);*/
-			socket.emit("adduser","dong123");
+			socket.emit("adduser",myobj.userNum);
 			socket.on("showlist",function(data){
-				_this.$store.state.myId = data.id;
+				
 				console.log(data);
 				socket.emit("setSocketId",{
 					socketId:data.id,
@@ -54,7 +63,7 @@
 			})
 			
 			socket.on("returnMess",function(data){
-				document.querySelector(".section").innerHTML+=(`<p>${data.user}:&nbsp&nbsp&nbsp${data.message}</p>`);
+				document.querySelector(".section").innerHTML+=(`<p><img src='${data.user}'/>${data.message}</p>`);
 			})
 		}
 	}
@@ -64,7 +73,6 @@ html,body{font-size: 62.5%;}
 	#dialog{
 		position: relative;
 		height: 100%;
-
 	}
 	.header{
 		  position:fixed;
@@ -120,4 +128,3 @@ html,body{font-size: 62.5%;}
 		align-items: flex-end;
 	}
 </style>
->>>>>>> 701c5b600bb7179af1260f011322e733e59b2bf4

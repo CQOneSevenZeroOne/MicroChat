@@ -120,6 +120,32 @@ app.get("/aggreAdd",function(req,res){
             res.send(JSON.stringify(results));
     })
 })
+//显示列表详情页
+app.post("/getfridetail",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    let sql =`SELECT b.friId,a.userImg,b.remark,a.userName,a.userNum FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.body.userId} and b.friId=${req.body.friId}`;
+     connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+    })
+})
+
+//修改备注名
+app.post("/updateMark",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    let sql =`update friends set remark='${req.body.remark}' where userId=${req.body.userId} and friId=${req.body.friId}`;
+     connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+    })
+    let sql1 =`SELECT b.friId,a.userImg,b.remark,a.userName,a.userNum FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.body.userId} and b.friId=${req.body.friId}`;
+     connection.query(sql1,function(error,results,fields){
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+    })
+})
+
 
 function timeChange(){ 
     var time = new Date();

@@ -64,7 +64,7 @@ export default {
             async:false,
             data:{
                 userId:userId,
-                friId:friId,
+                friId:friId
             },
             success(data){
               if(data=="[]"){
@@ -219,6 +219,7 @@ header p{
   font-size:16px;
   font-weight: 500;
   padding-right:5%;
+  width:20%;
 }
 .weui-cell:before{
   content: "";

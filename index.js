@@ -19,6 +19,7 @@ import search from './component/outer/search.vue'
 import login from './component/outer/login.vue'
 import register from './component/outer/register.vue'
 import adddetail from './component/outer/adddetail.vue'
+import friendlistdetail from './component/outer/friendlistdetail.vue'
 //tabchildren
 import wechat from './component/tabchildren/wechat.vue'
 import maillist from './component/tabchildren/maillist.vue'
@@ -71,6 +72,9 @@ var router=new VueRouter({
     {
         path:"/fridetail",
         component:fridetail
+    },{
+        path:"/friendlistdetail",
+        component:friendlistdetail
     },
     {
         path:"/personalinfo",
@@ -100,7 +104,8 @@ var store = new Vuex.Store({
     state:{
         bool:true,
         myId:"",
-        youId:""
+        youId:"",
+        friend:0
     }
 })
 
