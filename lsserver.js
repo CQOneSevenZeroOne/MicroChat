@@ -29,7 +29,7 @@ io.on("connection",function(socket){
 		})
 	})
 	socket.on("getSocketId",function(data){
-		connection.query(`select userSocketId from userInfo where userNum = '${data}'`,function(error,result){
+		connection.query(`select userSocketId from userInfo where userId = ${data}`,function(error,result){
 			if(error) throw error;
 			console.log(1);
 			console.log(result);
@@ -38,10 +38,15 @@ io.on("connection",function(socket){
 	})
 	socket.on("sendMess",function(data){
 		console.log(data);
-		io.sockets.sockets[data.id].emit("returnMess",{
-			message:data.message,
-			user:data.user
+		connection.query(`select userImg from userInfo where userId = ${data.user}`,function(error,result){
+			if(error) throw error;
+			console.log(2);
+			io.sockets.sockets[data.id].emit("returnMess",{
+				message:data.message,
+				user:result[0].userImg
+			})
 		})
+		
 	})
 })
 server.listen(12346);

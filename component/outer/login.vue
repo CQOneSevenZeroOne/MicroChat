@@ -1,6 +1,5 @@
 <template>
   <div id="loginbg">
-<<<<<<< HEAD
     <header>
         <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
         <i>|</i>
@@ -25,9 +24,6 @@
           <a :href="isLogin?'#/totaltab':'#/login'"><span v-text="span[1]" @click="userlogin"></span></a>
       </div>
     </form>
-=======
-    
->>>>>>> 093c8d8af9ef5ea588b9282a33fd66d9bf9e5c8e
   </div>
 </template>
 <script>
