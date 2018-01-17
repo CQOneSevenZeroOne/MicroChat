@@ -25,7 +25,7 @@
                         <p _v-4f0a3ae7="">头像</p>
                     </div>
                     <div class="weui_cell_ft" _v-4f0a3ae7="">
-                        <img class="_align-middle" style="height:60px" :src="img" _v-4f0a3ae7=""> </div>
+                        <img class="_align-middle" style="height:60px" :src="obj.userImg" _v-4f0a3ae7=""> </div>
                 </a>
             </div>
             <div class="weui_cells weui_cells_access information" _v-4f0a3ae7="">
@@ -33,13 +33,13 @@
                     <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
                         <p _v-4f0a3ae7="">名字</p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7="" v-text="name"></div>
+                    <div class="weui_cell_ft" _v-4f0a3ae7="" v-text="obj.userName"></div>
                 </a>
                 <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
                     <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
                         <p _v-4f0a3ae7="">微信号</p>
                     </div>
-                    <div class="chatnum" _v-4f0a3ae7="" v-text="chatnum"></div>
+                    <div class="chatnum" _v-4f0a3ae7="" v-text="obj.userNum"></div>
                 </a>
                 <a class="weui_cell" href="#/personalinfo/qrcode" _v-4f0a3ae7="">
 
@@ -71,13 +71,32 @@
 </template>
 
 <script>
+import $ from "jquery";
+import cookie from "jquery.cookie";
 export default {
   data(){
       return{
-          img:require("../../img/personinfo/1499914112624921aaaa7e1a76cf937757f564538142e.jpg"),
-          name:"扈冲",
-          chatnum:"cc1028749972"
+        id:"",
+        obj:{}
       }
+  },
+  mounted(){
+      this.id = JSON.parse($.cookie("user")).userId;
+      var _this = this;
+      $.ajax({
+          url:"http://localhost:1701/getuserinfo",
+          type:"get",
+          data:{
+              id:_this.id,
+          },
+          success(data){
+            console.log(data)
+            _this.obj = JSON.parse(data)[0]
+          }
+      })
+  },
+  methods:{
+      
   }
 }
 </script>

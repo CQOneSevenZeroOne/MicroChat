@@ -15,7 +15,7 @@
                 </p>
             </div>
         </div>
-        <div class="bigheadimg"><img :src="img" alt=""></div>
+        <div class="bigheadimg"><img :src="obj.userImg" alt=""></div>
         <transition name="abc">
             
             <div class="headimg-pop" v-show="isShowheadimg">
@@ -34,13 +34,29 @@
     </div>
 </template>
 <script>
-import "../../template/animate.css";
+import $ from "jquery";
+import cookie from "jquery.cookie";
 export default {
-  data() {
-    return {
-      img: require("../../img/personinfo/1499914112624921aaaa7e1a76cf937757f564538142e.jpg"),
-      isShowheadimg: false
-    };
+  data(){
+      return{
+        id:"",
+        obj:{}
+      }
+  },
+  mounted(){
+      this.id = JSON.parse($.cookie("user")).userId;
+      var _this = this;
+      $.ajax({
+          url:"http://localhost:1701/getuserinfo",
+          type:"get",
+          data:{
+              id:_this.id,
+          },
+          success(data){
+            // console.log(data)
+            _this.obj = JSON.parse(data)[0]
+          }
+      })
   },
   methods: {
     //获取头像的基本信息
@@ -54,6 +70,7 @@ export default {
         },
         success: data => {
           console.log(data);
+          
           this.img = data.img;
         }
       });

@@ -1,16 +1,17 @@
 import Vue from "vue";
 import "weui";
-import "./font/iconfont.css"; 
-import "./font/iconfont1.css"; 
+import "./font/iconfont.css";
+import "./font/iconfont1.css";
 import "./template/base.css";
 import "./template/common.css"
+
 //路由
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 
 //outer
 import totaltab from './component/outer/totaltab.vue'
-import dialogo from './component/outer/dialog.vue'
+import dialog from './component/outer/dialog.vue'
 import fridetail from './component/outer/fridetail.vue'
 import personalinfo from './component/outer/personalinfo.vue'
 import setup from './component/outer/setup.vue'
@@ -19,6 +20,8 @@ import addfriend from './component/outer/addfriend.vue'
 import search from './component/outer/search.vue'
 import login from './component/outer/login.vue'
 import register from './component/outer/register.vue'
+import adddetail from './component/outer/adddetail.vue'
+import friendlistdetail from './component/outer/friendlistdetail.vue'
 //tabchildren
 import wechat from './component/tabchildren/wechat.vue'
 import maillist from './component/tabchildren/maillist.vue'
@@ -32,6 +35,8 @@ import setname from "./component/personalinfo/setname.vue"
 import qrcode from "./component/personalinfo/qrcode.vue"
 import infomore from "./component/personalinfo/infomore.vue"
 import myplace from "./component/personalinfo/myplace.vue"
+import sex from "./component/personalinfo/infomore/sex.vue"
+import infomoremain from "./component/personalinfo/infomore/infomoremain.vue"
 
 
 
@@ -41,83 +46,104 @@ import myplace from "./component/personalinfo/myplace.vue"
 import Vuex from 'vuex';
 Vue.use(Vuex);
 
-var router=new VueRouter({
-    routes:[{
-        path:"/totaltab",
-        component:totaltab,
-        children:[{
-            path:'wechat',
-            component:wechat
-        },{
-            path:'maillist',
-            component:maillist
-        },{
-            path:'discover',
-            component:discover
-        },{
-            path:'mine',
-            component:mine
+var router = new VueRouter({
+    routes: [{
+        path: "/totaltab",
+        component: totaltab,
+        children: [{
+            path: 'wechat',
+            component: wechat
+        }, {
+            path: 'maillist',
+            component: maillist
+        }, {
+            path: 'discover',
+            component: discover
+        }, {
+            path: 'mine',
+            component: mine
         }]
-    },{
-        path:"/dialogo",
-        component:dialogo
+    }, {
+        path: "/dialog",
+        component: dialog
     },
     {
-        path:"/reglog",
-        component:reglog
+        path: "/reglog",
+        component: reglog
     },
     {
-        path:"/login",
-        component:login
+        path: "/login",
+        component: login
     },
     {
-        path:"/register",
-        component:register
+        path: "/register",
+        component: register
     },
     {
-        path:"/setup",
-        component:setup
+        path: "/setup",
+        component: setup
     },
     {
-        path:"/fridetail",
-        component:fridetail
+        path: "/fridetail",
+        component: fridetail
     },
     {
-        path:"/personalinfo",
-        component:personalinfo,
+        path: "/personalinfo",
+        component: personalinfo,
         //从这儿开始添加子元素
-        children:[{
-            path:"setheadimg",
-            component:setheadimg
-        },{
-            path:"/",
-            redirect:"main"
-        },{
-            path:"main",
-            component:main
-        },{
-            path:"setname",
-            component:setname
-        },{
-            path:"qrcode",
-            component:qrcode
-        },{
-            path:"infomore",
-            component:infomore
-        },{
-            path:"myplace",
-            component:myplace
+        children: [{
+            path: "setheadimg",
+            component: setheadimg
+        }, {
+            path: "/",
+            redirect: "main"
+        }, {
+            path: "main",
+            component: main
+        }, {
+            path: "setname",
+            component: setname
+        }, {
+            path: "qrcode",
+            component: qrcode
+        }, {
+            path: "infomore",
+            component: infomore,
+            children: [{
+                path: "/",
+                redirect: "infomoremain"
+            }, {
+                path: "sex",
+                component: sex
+            }, {
+                path: "infomoremain",
+                component: infomoremain
+            }]
+        }, {
+            path: "myplace",
+            component: myplace
         }]
+    }, {
+        path: "/friendlistdetail",
+        component: friendlistdetail
     },
     {
-        path:"/addfriend",
-        component:addfriend
+        path: "/personalinfo",
+        component: personalinfo
     },
     {
-        path:"/search",
-        component:search
+        path: "/addfriend",
+        component: addfriend
     },
-     // 默认进入页面的时候跳转到
+    {
+        path: "/adddetail",
+        component: adddetail
+    },
+    {
+        path: "/search",
+        component: search
+    },
+    // 默认进入页面的时候跳转到
     {
         path: '/',
         redirect: '/reglog'
@@ -125,17 +151,19 @@ var router=new VueRouter({
 })
 
 //配置状态
-var store= new Vuex.Store({
-    state:{
-        bool:true,
-        title:"标题"
+var store = new Vuex.Store({
+    state: {
+        bool: true,
+        myId: "",
+        youId: "",
+        friend: 0
     }
 })
 
 new Vue({
-    el:"#app",
-    template:`
-        <div class="abc">
+    el: "#app",
+    template: `
+        <div id="box">
             <router-view></router-view>
         </div> 
     `,

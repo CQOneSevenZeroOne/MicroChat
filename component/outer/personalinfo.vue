@@ -15,14 +15,8 @@ export default {
   }
 }
 </script>
-<style>
-.abc{height:100%}
-</style>
-
 <style scoped>
 .father-box{height: 100%;}
-
-
 </style>
 
 

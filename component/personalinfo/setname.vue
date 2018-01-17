@@ -6,7 +6,7 @@
             </div>
             <div class="top-other" _v-f50d4fca="">
                 <div slot="right" class="_align-right" _v-2747733a="">
-                    <span _v-2747733a=""><span class="green">完成</span></span>
+                    <span _v-2747733a=""><span :class="color" @click="finish">完成</span></span>
                 </div>
             </div>
             <div class="top-title _effect" _v-f50d4fca="">
@@ -17,31 +17,71 @@
         </div>
          <div class="bg-div">
                 <div class="setname">
-                    <input type="text" v-model="name">
+                    <input type="text" v-model="obj.userName" @input="textchang">
                     <span @click="emptycontent"><i class="iconfont icon-shanchu4" ></i></span>
                 </div>
         </div>       
     </div>
 </template>
 <script>
+import $ from "jquery";
+import cookie from "jquery.cookie";
 export default {
-    data(){
-        return{
-            name:"扈冲"
-        }
-    },
+  data(){
+      return{
+        id:"",
+        obj:{},
+        color:"green"
+      }
+  },
+  mounted(){
+      this.id = JSON.parse($.cookie("user")).userId;
+      var _this = this;
+      $.ajax({
+          url:"http://localhost:1701/getuserinfo",
+          type:"get",
+          data:{
+              id:_this.id,
+          },
+          success(data){
+            console.log(data)
+            _this.obj = JSON.parse(data)[0]
+          }
+      })
+  },
     methods:{
-        // emptycontent(){
-        //     this.name = "";
-        // }
+        emptycontent(){
+            this.obj.userName = "";
+        },
+        textchang(){
+            this.color = "green1";
+        },
+        finish(){
+            // console.log(1111)
+            var _this = this
+            $.ajax({
+                url:"http://localhost:1701/changuserName",
+                type:"get",
+                data:{
+                    name:_this.obj.userName,
+                    id:_this.obj.userId
+                },
+                success(data){
+                    // location.href="#/personalinfo"
+                }
+            })
+        }
     }
 }
 </script>
 
 <style scoped>
 .green{
-    /* color:rgb(13, 245, 13); */
+    
     color:green;
+}
+.green1{
+    color:rgb(13, 245, 13);
 }
 .bg-div {
   background-color: #efeff4;
