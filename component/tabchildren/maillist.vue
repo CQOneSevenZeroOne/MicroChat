@@ -97,6 +97,7 @@ img {
 }
 .maillist {
   background-color: #ebebeb;
+   padding-bottom: 47px;
 }
 .list_con {
   margin-top: 12px;

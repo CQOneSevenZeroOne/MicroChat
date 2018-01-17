@@ -6,7 +6,6 @@
 		    <div class="side"><i class="iconfont icon-wo"></i></div>
 		</div>
 		<div class="section">
-			<p>12345</p>
 		</div>
 		<div class="footer">
 			<input type="text" name="txt" v-model="val">
@@ -18,11 +17,11 @@
 	import $ from "jquery";
 	import "jquery.cookie";
 	import io from "socket";
-	var socket = io("http://localhost:12346");
+	var socket = io("http://localhost:1701");
 	export default{
 		data(){
 			return {
-				val:"123",
+				val:"",
 				p:"刘松"
 			}
 		},
@@ -31,15 +30,11 @@
 				var _this = this;
 				/*console.log(this.$store.state.myId);*/
 				console.log(this.val);
+				socket.emit("gettou",this.$store.state.myId);
+				
 				socket.emit("getSocketId",this.$store.state.friend);
-				socket.on("giveSocketId",function(data){
-					console.log(data);
-					socket.emit("sendMess",{
-						id:data,
-						message:_this.val,
-						user:_this.$store.state.myId
-					})
-				})
+				
+				
 				/*socket.emit("sendMess",{
 					id:_this.$store.state.myId,
 					message:_this.val
@@ -49,8 +44,9 @@
 		mounted(){
 			var _this = this;
 			var myobj = JSON.parse($.cookie("user"));
+			console.log(myobj);
 			this.$store.state.myId = myobj.userId;
-			this.p = myobj.userName;
+			this.p = this.$store.state.fremark;
 			/*console.log(_this);*/
 			socket.emit("adduser",myobj.userNum);
 			socket.on("showlist",function(data){
@@ -61,9 +57,19 @@
 					userNum:data.userNum
 				})
 			})
-			
+			socket.on("givetou",function(data){
+					document.querySelector(".section").innerHTML+=(`<p style="float:right;clear:both;height:2.5rem;"><img src='${data}' style="width:2.5rem;height:2.5rem;float:right;"/><span style="line-height:2.5rem;display:inline-block;height:2.5rem;min-width:5rem;border-radius:10px;background-color:green;color:#fff;">${_this.val}</span></p>`);
+				})
+			socket.on("giveSocketId",function(data){
+					console.log(data);
+					socket.emit("send",{
+						id:data,
+						message:_this.val,
+						user:_this.$store.state.myId
+					})
+				})
 			socket.on("returnMess",function(data){
-				document.querySelector(".section").innerHTML+=(`<p><img src='${data.user}'/>${data.message}</p>`);
+				document.querySelector(".section").innerHTML+=(`<p style="float:left;clear:both;height:2.5rem;"><img src='${data.user}' style="width:2.5rem;height:2.5rem;float:left;"/><span style="line-height:2.5rem;display:inline-block;height:2.5rem;min-width:5rem;border-radius:10px;background-color:#A0E759;">${data.message}</span></p>`);
 			})
 		}
 	}
@@ -98,6 +104,22 @@ html,body{font-size: 62.5%;}
 		margin-bottom: 1px;
 		background: #efeff4;
 		min-height: 39rem;
+		overflow: hidden;
+		zoom: 1;
+	}
+	.zuo{
+		line-height: 2.5rem;
+		height: 2.5rem;
+		float: left;
+	}
+	.you{
+		line-height: 2.5rem;
+		height: 2.5rem;
+		float: right;
+	}
+	.size{
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 	.footer{
 		position: fixed;
@@ -127,8 +149,4 @@ html,body{font-size: 62.5%;}
 		color: #fff;
 		align-items: flex-end;
 	}
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> 28c1d4a79fc0e71478ac4efea580bd51a7b8ef39

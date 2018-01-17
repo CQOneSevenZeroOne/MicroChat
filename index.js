@@ -152,11 +152,20 @@ var router = new VueRouter({
 
 //配置状态
 var store = new Vuex.Store({
+<<<<<<< HEAD
     state: {
         bool: true,
         myId: "",
         youId: "",
         friend: 0
+=======
+    state:{
+        bool:true,
+        myId:"",
+        youId:"",
+        friend:0,
+        fremark:""
+>>>>>>> 4437353fb9db3cb820ab513645a77c32d44f19ab
     }
 })
 
