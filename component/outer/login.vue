@@ -1,11 +1,10 @@
 <template>
   <div id="loginbg">
-<<<<<<< HEAD
     <header>
         <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
         <i>|</i>
     </header>
-    <form class="logform" id="userreg">
+    <form class="logform" id="userlog">
       <h3 v-text="titlebool?title[0]:title[1]"></h3>
       <div class="mydetailinfo">
           <span v-text="titlebool?phonenum[0]:phonenum[1]"></span><input type="text" v-model="username" @blur="namenoshow" @focus="namenshow">
@@ -25,9 +24,6 @@
           <a :href="isLogin?'#/totaltab':'#/login'"><span v-text="span[1]" @click="userlogin"></span></a>
       </div>
     </form>
-=======
-    
->>>>>>> 093c8d8af9ef5ea588b9282a33fd66d9bf9e5c8e
   </div>
 </template>
 <script>
@@ -120,7 +116,8 @@ export default {
               if(self.userpass==data[0].userPass){
                 var obj={
                   "userId":data[0].userId,
-                  "userName":data[0].userName
+                  "userName":data[0].userName,
+                  "userNum":data[0].userNum
                   };
                 $.cookie("user",JSON.stringify(obj));
                 self.isLogin=true;

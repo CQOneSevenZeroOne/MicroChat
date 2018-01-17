@@ -28,7 +28,6 @@
 export default {
   data(){
       return {
-          img:require("../../img/User.jpg"),
           id:0
       }
   },
