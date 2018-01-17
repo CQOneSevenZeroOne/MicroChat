@@ -50,6 +50,15 @@ app.post('/userreg', function(req, res) {
 		res.send("1");
     });
 });
+//根据昵称查询我的好友
+app.get("/searchfriend",function(req,res){
+    res.append("Access-Control-Allow-Origin","*");
+     let sql =`SELECT b.friId,a.userImg,b.remark FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus=2 and b.remark like '%${req.query.searchcon}%'  ORDER BY CONVERT(b.remark USING gbk) ASC`;
+     connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+    })
+}) 
 
 var storage = multer.diskStorage({
 	//存储文件地方
