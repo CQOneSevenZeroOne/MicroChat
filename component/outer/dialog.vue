@@ -1,20 +1,13 @@
 <template>
 	<div id="dialog">
-		<div class="header">
-		    <div class="side"><a href="#/totaltab/wechat"><i class="iconfont icon-zuojiantou"></i> 微信</a></div>
-		    <p v-text="p"></p>
-		    <div class="side"><i class="iconfont icon-wo"></i></div>
-		</div>
-		<div class="section">
-			<p>12345</p>
-		</div>
-		<div class="footer">
-			<input type="text" name="txt" v-model="val">
-			<button type="button" @click="sendMess">发送</button>
-		</div>
+	
 	</div>
 </template>
 <script>
+<<<<<<< HEAD
+
+</script>
+=======
 	import $ from "jquery";
 	import "jquery.cookie";
 	import io from "socket";
@@ -127,3 +120,4 @@ html,body{font-size: 62.5%;}
 		align-items: flex-end;
 	}
 </style>
+>>>>>>> 701c5b600bb7179af1260f011322e733e59b2bf4

@@ -29,7 +29,7 @@
                     </div>
                     <div class="status">
                         <p class="weui-media-box__desc" v-show="i.accstatus==2">已添加</p>
-                        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" v-show="i.accstatus==1">接受</a>
+                        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" v-show="i.accstatus==1" @click="aggreAdd(i.friId)">接受</a>
                     </div>
                 </a>
         </div>
@@ -42,23 +42,41 @@ export default {
     data(){
       return {
           title:"新的朋友",
-          bool:false,
-          obj:[]
+          bool:false,   //搜索框的显示
+          obj:[],
+          cookeId:4
       }
     },
     methods:{
+        //点击搜索框跳转页面
         jumphref(){
             location.href="#/fridetail"
+        },
+        //点击接受，同意添加好友
+        aggreAdd(friId){
+            var _this = this;
+            $.ajax({
+                url:"http://localhost:1701/aggreAdd",
+                type:"GET",
+                data:{
+                    userId:_this.cookeId,
+                    friId:friId
+                },
+                success(data){
+                _this.obj=JSON.parse(data);
+            }
+            })
         }
         
     },
     mounted(){
+        //页面加载好友申请
         var _this = this;
         $.ajax({
             url:"http://localhost:1701/findall",
             type:"GET",
             data:{
-                userId:4
+                userId:_this.cookeId
             },
             success(data){
                 _this.obj=JSON.parse(data);
