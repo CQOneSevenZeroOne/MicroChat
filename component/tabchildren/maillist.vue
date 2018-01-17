@@ -63,7 +63,7 @@ export default {
         }
       ],
       obj:[],
-      cookeId:4
+      cookeId:0
     };
   },
   methods: {
@@ -73,6 +73,8 @@ export default {
     }
   },
   mounted(){
+      var cookie = JSON.parse($.cookie("user"));
+      this.cookeId = cookie.userId;
         //页面加载好友
         var _this = this;
         $.ajax({

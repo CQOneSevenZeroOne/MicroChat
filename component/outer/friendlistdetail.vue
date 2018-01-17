@@ -29,6 +29,7 @@
 </template>
 <script>
 import addfriend from "../../img/addfriend.jpg";
+import cookie from "jquery.cookie";
 import $ from "jquery";
 import Vue from "vue";
 
@@ -36,12 +37,14 @@ export default {
     data(){
       return {
           title:"详细资料",
-          cookeId:4,
+          cookeId:0,
           obj:{},
           remark:""
       }
   },
   mounted(){
+      var cookie = JSON.parse($.cookie("user"));
+      this.cookeId = cookie.userId;
     var id = this.$store.state.friend;
     var _this = this;
         $.ajax({
