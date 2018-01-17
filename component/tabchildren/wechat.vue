@@ -18,10 +18,6 @@
 </template>
 <script>
 import searchbar from "../common/searchbar.vue";
-import $ from "jquery";
-import "jquery.cookie";
-import io from "socket";
-var socket = io("http://localhost:12346");
 export default {
   components:{
       searchbar
@@ -36,17 +32,6 @@ export default {
   },
   methods:{
 
-  },
-  mounted(){
-		var _this = this;
-		/*console.log(_this);*/
-		socket.emit("adduser","liu");
-		socket.on("showlist",function(data){
-			for(var i in data){
-				console.log(data[i].id);
-			}
-			_this.$store.state.myId = data[data.length-1].id;
-		})
   }
 }
 

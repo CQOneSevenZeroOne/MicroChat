@@ -16,6 +16,7 @@
 </template>
 <script>
 	import $ from "jquery";
+	import "jquery.cookie";
 	import io from "socket";
 	var socket = io("http://localhost:12346");
 	export default{
@@ -30,17 +31,37 @@
 				var _this = this;
 				/*console.log(this.$store.state.myId);*/
 				console.log(this.val);
-				socket.emit("sendMess",{
+				socket.emit("getSocketId","jian123");
+				socket.on("giveSocketId",function(data){
+					console.log(data);
+					socket.emit("sendMess",{
+						id:data,
+						message:_this.val,
+						user:"dong123"
+					})
+				})
+				/*socket.emit("sendMess",{
 					id:_this.$store.state.myId,
 					message:_this.val
-				})
+				})*/
 			}
 
 		},
 		mounted(){
-			console.log(this.$store.state.myId);
+			var _this = this;
+			/*console.log(_this);*/
+			socket.emit("adduser","dong123");
+			socket.on("showlist",function(data){
+				_this.$store.state.myId = data.id;
+				console.log(data);
+				socket.emit("setSocketId",{
+					socketId:data.id,
+					userNum:data.userNum
+				})
+			})
+			
 			socket.on("returnMess",function(data){
-				document.querySelector(".section").innerHTML+=(`<p>${data.message}</p>`);
+				document.querySelector(".section").innerHTML+=(`<p>${data.user}:&nbsp&nbsp&nbsp${data.message}</p>`);
 			})
 		}
 	}
