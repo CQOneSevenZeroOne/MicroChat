@@ -25,19 +25,8 @@
     "json-loader": "^0.5.7",
     "multer": "^1.3.0",
     "mysql": "^2.15.0",
-<<<<<<< HEAD
     "net": "^1.0.2",
     "socket.io": "^2.0.4",
-=======
-    "mysql": "^2.15.0",
-    "net": "^1.0.2",
-    "socket.io": "^2.0.4",
-    "net": "^1.0.2",
-    "socket.io": "^2.0.4",
-    "mysql": "^2.15.0",
-    "net": "^1.0.2",
-    "socket.io": "^2.0.4",
->>>>>>> 28c1d4a79fc0e71478ac4efea580bd51a7b8ef39
     "style-loader": "^0.19.1",
     "text-loader": "^0.0.1",
     "url-loader": "^0.6.2",

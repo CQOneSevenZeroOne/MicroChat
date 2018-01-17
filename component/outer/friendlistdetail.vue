@@ -23,7 +23,7 @@
                 </div> 
                 <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary" @click="updatemark">修改</a>
           </div>
-          <a href="javascript:;" class="weui-btn weui-btn_primary" @click="send">发送信息</a>
+          <a href="#/dialog" class="weui-btn weui-btn_primary" @click="send">发送信息</a>
         </div>
     </div>
 </template>
@@ -62,7 +62,6 @@ export default {
   methods:{
       send(){
           this.$store.state.friend=this.obj.friId;
-          location.href="#/dialog";
       },
       updatemark(){
           var _this = this;
