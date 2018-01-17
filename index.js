@@ -105,7 +105,8 @@ var store = new Vuex.Store({
         bool:true,
         myId:"",
         youId:"",
-        friend:0
+        friend:0,
+        fremark:""
     }
 })
 
