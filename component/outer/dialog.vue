@@ -31,7 +31,7 @@
 				var _this = this;
 				/*console.log(this.$store.state.myId);*/
 				console.log(this.val);
-				socket.emit("getSocketId","jian123");
+				socket.emit("getSocketId","dong123");
 				socket.on("giveSocketId",function(data){
 					console.log(data);
 					socket.emit("sendMess",{
