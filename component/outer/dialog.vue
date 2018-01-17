@@ -16,6 +16,7 @@
 </template>
 <script>
 	import $ from "jquery";
+	import "jquery.cookie";
 	import io from "socket";
 	var socket = io("http://localhost:12346");
 	export default{
@@ -30,17 +31,39 @@
 				var _this = this;
 				/*console.log(this.$store.state.myId);*/
 				console.log(this.val);
-				socket.emit("sendMess",{
+				socket.emit("getSocketId",this.$store.state.friend);
+				socket.on("giveSocketId",function(data){
+					console.log(data);
+					socket.emit("sendMess",{
+						id:data,
+						message:_this.val,
+						user:_this.$store.state.myId
+					})
+				})
+				/*socket.emit("sendMess",{
 					id:_this.$store.state.myId,
 					message:_this.val
-				})
+				})*/
 			}
-
 		},
 		mounted(){
-			console.log(this.$store.state.myId);
+			var _this = this;
+			var myobj = JSON.parse($.cookie("user"));
+			this.$store.state.myId = myobj.userId;
+			this.p = myobj.userName;
+			/*console.log(_this);*/
+			socket.emit("adduser",myobj.userNum);
+			socket.on("showlist",function(data){
+				
+				console.log(data);
+				socket.emit("setSocketId",{
+					socketId:data.id,
+					userNum:data.userNum
+				})
+			})
+			
 			socket.on("returnMess",function(data){
-				document.querySelector(".section").innerHTML+=(`<p>${data.message}</p>`);
+				document.querySelector(".section").innerHTML+=(`<p><img src='${data.user}'/>${data.message}</p>`);
 			})
 		}
 	}
@@ -50,7 +73,6 @@ html,body{font-size: 62.5%;}
 	#dialog{
 		position: relative;
 		height: 100%;
-
 	}
 	.header{
 		  position:fixed;
@@ -105,4 +127,8 @@ html,body{font-size: 62.5%;}
 		color: #fff;
 		align-items: flex-end;
 	}
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> 28c1d4a79fc0e71478ac4efea580bd51a7b8ef39
