@@ -10,7 +10,7 @@
         </div>
       </a>
       <div class="list_con">
-      <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" v-for="i in obj">
+      <a href="#/friendlistdetail" class="weui-media-box weui-media-box_appmsg" v-for="i in obj" @click="clicklist(i.friId)">
         <div class="weui-media-box__hd img1">
             <img class="weui-media-box__thumb" :src="i.userImg">
         </div>
@@ -28,6 +28,8 @@ import friendstalk from "../../img/friendstalk.jpg";
 import label from "../../img/label.jpg";
 import sumnumber from "../../img/sumnumber.jpg";
 import $ from "jquery";
+
+
 export default {
   components: {
     searchbar
@@ -61,17 +63,18 @@ export default {
         }
       ],
       obj:[],
-      cookeId:4
+      cookeId:0
     };
   },
   methods: {
-    clickhead(id) {
-      if (id == 0) {
-        location.href = "#/addfriend";
-      }
+    //点击跳转到详情页
+    clicklist(friId){
+      this.$store.state.friend=friId;
     }
   },
   mounted(){
+      var cookie = JSON.parse($.cookie("user"));
+      this.cookeId = cookie.userId;
         //页面加载好友
         var _this = this;
         $.ajax({

@@ -3,7 +3,7 @@
       <header >
           <a href="#/addfriend"><i class="iconfont icon-zuojiantou"></i></a><p v-html="title"></p>
       </header>
-      <div class="weui-search-bar weui-search-bar_focusing"  id="searchBar">
+      <a class="weui-search-bar weui-search-bar_focusing"  id="searchBar">
             <form class="weui-search-bar__form">
                 <div class="weui-search-bar__box">
                     <i class="weui-icon-search" ></i>
@@ -16,7 +16,7 @@
                 </label>
             </form>
             <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel" @click="findfriend">搜索</a>
-        </div>
+        </a>
         <div v-show="isobj">
           <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg boxbox">
             <div class="weui-media-box__hd">
@@ -51,8 +51,14 @@ export default {
       obj:{},         
       remark:"",       //备注名
       isfriend:true,     //是否是未添加朋友
-      cookeId:4
+      cookeId:0,
+      cookeName:""
     }
+  },
+  mounted(){
+      var cookie = JSON.parse($.cookie("user"));
+      this.cookeId = cookie.userId;
+      this.cookeName = cookie.userName;
   },
   methods:{
     //查询是否已经发送邀请了
@@ -64,7 +70,7 @@ export default {
             async:false,
             data:{
                 userId:userId,
-                friId:friId,
+                friId:friId
             },
             success(data){
               if(data=="[]"){
@@ -134,7 +140,7 @@ export default {
                   userId:uid,
                   friId:_this.obj.userId,
                   remark:newmark,
-                  userName:"啊打发电商"
+                  userName:_this.cookeName
               },
               success(data){
                 console.log(data);
@@ -219,6 +225,7 @@ header p{
   font-size:16px;
   font-weight: 500;
   padding-right:5%;
+  width:20%;
 }
 .weui-cell:before{
   content: "";

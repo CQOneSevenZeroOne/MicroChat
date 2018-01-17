@@ -46,7 +46,6 @@
 					message:_this.val
 				})*/
 			}
-
 		},
 		mounted(){
 			var _this = this;
@@ -75,7 +74,6 @@ html,body{font-size: 62.5%;}
 	#dialog{
 		position: relative;
 		height: 100%;
-
 	}
 	.header{
 		  position:fixed;
@@ -137,4 +135,8 @@ html,body{font-size: 62.5%;}
 		color: #fff;
 		align-items: flex-end;
 	}
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> 28c1d4a79fc0e71478ac4efea580bd51a7b8ef39
