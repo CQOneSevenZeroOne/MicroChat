@@ -2,7 +2,7 @@ var app = require("express")();
 var mysql = require("mysql");
 var server = require("http").createServer(app);
 var io = require("socket.io")(server);
-var userlist = [];
+var userlist = {};
 var connection = mysql.createConnection({
 	host:"10.40.153.231",
 	user:"liusong",
@@ -17,19 +17,32 @@ app.get("/getfri",function(req,res){
 io.on("connection",function(socket){
 	console.log(socket.id);
 	socket.on("adduser",function(user){
-		userlist.push({
-			name:user,
-			id:socket.id
-		})
+		userlist["userNum"]=user;
+		userlist["id"]=socket.id;
 		io.emit("showlist",userlist);
+	})
+	socket.on("setSocketId",function(data){
+		console.log(data);
+		connection.query(`update userInfo set userSocketId = '${data.socketId}' where userNum = '${data.userNum}'`,function(error,result){
+			if(error) throw error;
+			console.log('success');
+		})
+	})
+	socket.on("getSocketId",function(data){
+		connection.query(`select userSocketId from userInfo where userNum = '${data}'`,function(error,result){
+			if(error) throw error;
+			console.log(1);
+			console.log(result);
+			socket.emit("giveSocketId",result[0].userSocketId);
+		})
 	})
 	socket.on("sendMess",function(data){
 		console.log(data);
 		io.sockets.sockets[data.id].emit("returnMess",{
-			message:data.message
+			message:data.message,
+			user:data.user
 		})
 	})
 })
-
 server.listen(12346);
 console.log("开启服务器");
