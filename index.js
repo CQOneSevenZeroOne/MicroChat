@@ -1,7 +1,9 @@
 import Vue from "vue";
 import "weui";
 import "./font/iconfont.css"; 
+import "./font/iconfont1.css"; 
 import "./template/base.css";
+import "./template/common.css"
 //路由
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
@@ -22,6 +24,16 @@ import wechat from './component/tabchildren/wechat.vue'
 import maillist from './component/tabchildren/maillist.vue'
 import discover from './component/tabchildren/discover.vue'
 import mine from './component/tabchildren/mine.vue'
+
+//引用个人信息的模块
+import setheadimg from "./component/personalinfo/setheadimg.vue"
+import main from "./component/personalinfo/main.vue"
+import setname from "./component/personalinfo/setname.vue"
+import qrcode from "./component/personalinfo/qrcode.vue"
+import infomore from "./component/personalinfo/infomore.vue"
+import myplace from "./component/personalinfo/myplace.vue"
+
+
 
 
 
@@ -64,15 +76,38 @@ var router=new VueRouter({
     },
     {
         path:"/setup",
-        componnet:setup
+        component:setup
     },
     {
         path:"/fridetail",
-        componnet:fridetail
+        component:fridetail
     },
     {
         path:"/personalinfo",
-        componnet:personalinfo
+        component:personalinfo,
+        //从这儿开始添加子元素
+        children:[{
+            path:"setheadimg",
+            component:setheadimg
+        },{
+            path:"/",
+            redirect:"main"
+        },{
+            path:"main",
+            component:main
+        },{
+            path:"setname",
+            component:setname
+        },{
+            path:"qrcode",
+            component:qrcode
+        },{
+            path:"infomore",
+            component:infomore
+        },{
+            path:"myplace",
+            component:myplace
+        }]
     },
     {
         path:"/addfriend",
@@ -100,7 +135,7 @@ var store= new Vuex.Store({
 new Vue({
     el:"#app",
     template:`
-        <div>
+        <div class="abc">
             <router-view></router-view>
         </div> 
     `,
