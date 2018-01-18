@@ -1,10 +1,10 @@
 <template>
   <div id="regbg">
-      <header>
+      <div class="header">
           <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
           <i>|</i>
           <span v-text="span[0]"></span>
-      </header>
+      </div>
       <form name="regform" id="userreg">
             <div class="mydetailinfo">
                 <span v-text="span[1]"></span><input type="text" v-model="username" @blur="namenoshow" @focus="namenshow" placeholder="6-12位字母数字组合" @input="nameisin">
@@ -13,8 +13,8 @@
                 <em class="messshow" :style="{display:hasnamemessshow?'block':'none'}">用户名已存在</em>
             </div>
             <div class="mydetailinfo">
-                <span v-text="span[6]"></span><input type="text" v-model="usernick">
-                <i class="clearcon clearconfir" @click="clearconname" v-show="nameisdel">×</i>
+                <span v-text="span[6]"></span><input type="text" v-model="usernick" @focus="nicknshow">
+                <i class="clearcon" @click="clearconnick" v-show="nickisdel">×</i>
             </div>
             <div class="mydetailinfo">
                 <span v-text="span[2]"></span> <input class="sex" type="radio" value="0" name="gender" checked v-model="usergender"><i>男</i><input class="sex" v-model="usergender" type="radio" value="1" name="gender"><i>女</i>
@@ -38,11 +38,11 @@
             </div>
             <div class="picture">
                 <div class="weui-uploader__input-box">
-                        <input id="uploaderInput" name="userlogo" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+                        <input id="uploaderInput" name="userlogo" class="weui-uploader__input" type="file" accept="image/*" multiple="" @change="showuserimg">
                 </div>
             </div>
             <div class="picture">
-                <img class="weui-uploader__file" src='' alt="  "/>
+                <img class="weui-uploader__file" src='' alt="  " id="upuserpic"/>
             </div>
       </form>
   </div>
@@ -65,6 +65,7 @@ function upload(){
         });
 	return src;
 }
+
 export default {
   data(){
       return {
@@ -84,6 +85,7 @@ export default {
           nameisdel:false,
           passisdel:false,
           numisdel:false,
+          nickisdel:false,
           str:"",
           alluser:[]//所有已注册用户信息
       }
@@ -110,6 +112,9 @@ export default {
     clearconphone(){
         this.userphone="";
     },
+    clearconnick(){
+        this.usernick="";
+    },
     //显示清空小图标
     namenshow(){
       this.nameisdel=true;
@@ -119,6 +124,9 @@ export default {
     },
     numnshow(){
       this.numisdel=true;
+    },
+    nicknshow(){
+        this.nickisdel=true;
     },
     //判断数据库里面是否存在相同的微信号
     nameisin(){
@@ -167,6 +175,17 @@ export default {
         }
       this.numisdel=false;
     },
+    //上传头像显示图片
+    showuserimg(){
+        var uploaderInput = $("#uploaderInput");
+        var imgFile = uploaderInput[0].files[0];
+        var fr = new FileReader();
+        fr.onload = function() {
+            var pic=$("#upuserpic");
+            pic[0].src = fr.result;
+        };
+        fr.readAsDataURL(imgFile);  
+    },
     //注册按钮事件
     userreg(){
           if(this.username && this.userpass && this.usergender && this.userphone && this.userpass){
@@ -174,7 +193,7 @@ export default {
                     var self=this;
                     var path=upload();
                     if(path[0]==''){
-                        this.str='user.jpg';
+                        this.str='User.jpg';
                     }else{
                         this.str=path[0];
                     }
@@ -229,15 +248,15 @@ html,body{width:100%;height:100%;}
 a{text-decoration: none;display: block;}
 i{font-style: normal;}
 input{border:0;outline: none;background: #FFFFFF;}
-#regbg header{
+#regbg .header{
     background: #393A3F;
     height:7%;
     font-size: 16px;
     color:white;
 }
-#regbg header a{color: white;}
-#regbg header a,#regbg header i,#regbg header span{margin-left:5%;float:left;display: block;height:100%;line-height: 50px;}
-#regbg header i{color:#2B2C31;width:2px;}
+#regbg .header a{color: white;}
+#regbg .header a,#regbg .header i,#regbg .header span{margin-left:5%;float:left;display: block;height:100%;line-height: 50px;}
+#regbg .header i{color:#2B2C31;width:2px;}
 .regform{overflow: hidden;position: relative;}
 .mydetailinfo{position:relative;margin:0 4%;height:10%;width:auto;font-size: 18px;line-height: 100%;border-bottom: 1px solid #D8D8D8;overflow: hidden;}
 .mydetailinfo  span,.mydetailinfo input,.mydetailinfo i{display:block;float: left;line-height: 70px;}

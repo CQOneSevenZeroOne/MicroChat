@@ -25,6 +25,13 @@
           </div>
           <a href="#/dialog" class="weui-btn weui-btn_primary" @click="send">发送信息</a>
         </div>
+        <div id="toast" :style="{display:isShow?'block':'none'}">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+            <p class="weui-toast__content">修改成功</p>
+        </div>
+        </div>
     </div>
 </template>
 <script>
@@ -39,7 +46,8 @@ export default {
           title:"详细资料",
           cookeId:0,
           obj:{},
-          remark:""
+          remark:"",
+          isShow:false
       }
   },
   mounted(){
@@ -67,6 +75,7 @@ export default {
           this.$store.state.friend=this.obj.friId;
           this.$store.state.fremark=this.obj.remark;
       },
+      //修改备注名
       updatemark(){
           var _this = this;
           
@@ -79,10 +88,15 @@ export default {
                 remark:_this.remark
             },
             success(data){
+                _this.isShow=true;
+                setTimeout(function(){
+                    _this.isShow=false;
+                },1000)
                 if(data!="[]"){
                      _this.obj=JSON.parse(data)[0];
                      _this.remark=_this.obj.remark;
                 }
+                
             }
         })
       }

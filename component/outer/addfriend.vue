@@ -33,6 +33,13 @@
                     </div>
                 </a>
         </div>
+        <div id="toast" :style="{display:isShow?'block':'none'}">
+        <div class="weui-mask_transparent"></div>
+        <div class="weui-toast">
+            <i class="weui-icon-success-no-circle weui-icon_toast"></i>
+            <p class="weui-toast__content">添加成功</p>
+        </div>
+    </div>
   </div>
 </template>
 <script>
@@ -44,7 +51,8 @@ export default {
           title:"新的朋友",
           bool:false,   //搜索框的显示
           obj:[],
-          cookeId:0
+          cookeId:0,
+          isShow:false
       }
     },
     methods:{
@@ -64,6 +72,10 @@ export default {
                 },
                 success(data){
                 _this.obj=JSON.parse(data);
+                _this.isShow=true;
+                setTimeout(function(){
+                    _this.isShow=false;
+                },1000)
             }
             })
         }

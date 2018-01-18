@@ -51,6 +51,15 @@ app.post('/userreg', function(req, res) {
 		res.send("1");
     });
 });
+//根据昵称查询我的好友
+app.get("/searchfriend",function(req,res){
+    res.append("Access-Control-Allow-Origin","*");
+     let sql =`SELECT b.friId,a.userImg,b.remark FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus=2 and b.remark like '%${req.query.searchcon}%'  ORDER BY CONVERT(b.remark USING gbk) ASC`;
+     connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            res.send(JSON.stringify(results));
+    })
+}) 
 
 var storage = multer.diskStorage({
 	//存储文件地方
@@ -280,5 +289,71 @@ function stringNum(ti){
     }
     return ti;
 }
+
+//----------------------------------huchong-----------------------------------------
+//向数据库获取用户信息，并传给页面
+app.get("/getuserinfo",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    let sql =`SELECT userId, userName,  userGender, userPhone, userAddress, userImg, userNum, userSocketId FROM userinfo WHERE userId=${req.query.id}`;
+    connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            var str = JSON.stringify(results)
+            res.send(str)
+    })
+    
+})
+//前台提交信息，并向数据库里面的修改昵称
+app.get("/changuserName",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    let sql =`UPDATE userinfo SET userName='${req.query.name}' WHERE userId=${req.query.id}`;
+    console.log(sql);
+    connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            // var str = JSON.stringify(results)
+            res.send("修改成功")
+    })
+    
+})
+//前台往后台存储性别
+app.get("/changuserGender",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    let sql =`UPDATE userinfo SET userGender='${req.query.userGender}' WHERE userId=${req.query.id}`;
+    connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            // var str = JSON.stringify(results)
+            res.send("修改成功")
+    })
+    
+})
+
+
+// app.get("/aggreAdd",function(req,res){
+// 	res.append("Access-Control-Allow-Origin","*");
+//     //req.body是post传输的数据
+//     var timestring =timeChange();
+//     var sql1=`update friends set accstatus=2,addTime=${timestring} where userId=${req.query.userId} and friId=${req.query.friId}`;
+// 	 connection.query(sql1,function(error,results,fields){
+//             if (error) throw error; 
+//     })
+//     var sql2=`update friends set addTime=${timestring},accstatus=2 where friId=${req.query.userId} and userId=${req.query.friId}`;
+// 	 connection.query(sql2,function(error,results,fields){
+//             if (error) throw error;   
+//     })
+//     let sql3 =`SELECT b.friId,a.userImg,b.remark,b.accstatus FROM friends as b,userinfo as a WHERE a.userId=b.friId and b.userId=${req.query.userId} and b.accstatus!=0 ORDER BY b.addtime DESC`;
+//      connection.query(sql3,function(error,results,fields){
+//             if (error) throw error;
+//             res.send(JSON.stringify(results));
+//     })
+// })
+
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 0ce9d9b701a37055b2ca8f264c9d07f716ff0fae
 server.listen(1701);
 console.log("开启服务器");
