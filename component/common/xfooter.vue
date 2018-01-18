@@ -3,7 +3,7 @@
         <a href="#/totaltab/wechat" class="weui-tabbar__item" :class="{'weui-bar__item_on':id==0}" @click="isOn(0)">
             <span style="display: inline-block;position: relative;">
                 <i class="iconfont icon-weixin " :class="{'fontColor':id==0}"></i>
-                <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+            
             </span>
             <p class="weui-tabbar__label">微信</p>
         </a>
@@ -14,7 +14,7 @@
         <a href="#/totaltab/discover" class="weui-tabbar__item" :class="{'weui-bar__item_on':id==2}" @click="isOn(2)">
             <span style="display: inline-block;position: relative;">
                 <i class="iconfont icon-faxian" :class="{'fontColor':id==2}"></i>
-                <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                
             </span>
             <p class="weui-tabbar__label">发现</p>
         </a>
@@ -50,6 +50,7 @@ export default {
     }
     .weui-tabbar{
         position: fixed;
+        bottom:-1px;
         
     }
 </style>
