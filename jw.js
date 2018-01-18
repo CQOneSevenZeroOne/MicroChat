@@ -246,6 +246,29 @@ io.on("connection",function(socket){
         })
         
     })
+    socket.on("chatinfo",function(data){
+        var chatTime = timeChange();
+        connection.query(`insert into chatInfo(userId,friId,myCon,chatTime) values (${data.userId},${data.friId},'${data.myCon}','${chatTime}')`,function(error,result){
+            if(error) throw error;
+            console.log("ok");
+        })
+    })
+})
+
+app.get("/getChat",function(req,res){
+    res.append("Access-Control-Allow-Origin","*");
+    connection.query(`select friId,myCon,chatTime from chatinfo where userId = ${req.query.id} order by chatTime desc`,function(error,result){
+        if(error) throw error;
+        res.send(JSON.stringify(result));
+    })
+})
+
+app.post("/fritou",function(req,res){
+    res.append("Access-Control-Allow-Origin","*");
+    connection.query(`select userImg,userName,userId from userinfo where userId = ${req.body.id}`,function(error,result){
+        if(error) throw error;
+        res.send(JSON.stringify(result));
+    })
 })
 function timeChange(){ 
     var time = new Date();
