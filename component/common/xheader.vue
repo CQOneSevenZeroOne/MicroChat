@@ -2,7 +2,7 @@
       <header >
           <p v-html="html"></p>
            <img :src="img[1]" alt="">
-          <img :src="img[0]" alt="">
+          <img :src="img[0]" alt="" @click="tosearch">
          
       </header>
 </template>
@@ -15,6 +15,11 @@ export default {
       html: "微信",
       img:[img1,img2]
     };
+  },
+  methods:{
+    tosearch(){
+      this.$router.push({ path: '/search' })
+    }
   }
 };
 </script>

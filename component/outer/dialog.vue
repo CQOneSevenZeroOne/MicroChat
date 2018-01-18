@@ -34,7 +34,11 @@
 				
 				socket.emit("getSocketId",this.$store.state.friend);
 				
-				
+				socket.emit("chatinfo",{
+					userId:this.$store.state.myId,
+					friId:this.$store.state.friend,
+					myCon:this.val
+				})
 				/*socket.emit("sendMess",{
 					id:_this.$store.state.myId,
 					message:_this.val

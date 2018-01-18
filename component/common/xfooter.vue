@@ -33,6 +33,21 @@ export default {
   },
   mounted(){
       //console.log(this.$store.state)
+    var arr=location.href.split(":")
+    var words=arr[arr.length-1].split("/");
+    var key=words[words.length-1]
+    if(/^wechat$/.test(key)){
+        this.id=0;
+    }
+    if(/^maillist$/.test(key)){
+        this.id=1;
+    }
+    if(/^discover$/.test(key)){
+        this.id=2;
+    }
+    if(/^mine$/.test(key)){
+        this.id=3;
+    }
   },
   methods:{
       isOn(id){

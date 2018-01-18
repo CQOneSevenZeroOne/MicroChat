@@ -9,7 +9,7 @@
         <form class="weui-search-bar__form">
             <div class="weui-search-bar__box">
                 <i class="weui-icon-search" @click="searchfriend"></i>
-                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" v-model="searchcon">
+                <input type="search" autofocus="autofocus" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="" v-model="searchcon">
                 <a href="javascript:" class="weui-icon-clear" id="searchClear" @click="clearcon"></a>
             </div>
             <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);" @click="showcancel">
@@ -39,7 +39,7 @@ import xheader from "../common/xheader.vue";
 export default {
   data(){
     return {
-      cancelbool:false,
+      cancelbool:true,
       searchcon:"",
       obj:[],
       cookeId:0

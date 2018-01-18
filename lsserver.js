@@ -28,6 +28,7 @@ io.on("connection",function(socket){
 			console.log('success');
 		})
 	})
+	
 	socket.on("getSocketId",function(data){
 		connection.query(`select userSocketId from userInfo where userId = ${data}`,function(error,result){
 			if(error) throw error;

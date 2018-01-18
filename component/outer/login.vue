@@ -21,7 +21,7 @@
           <span @click="tophone" v-show="!titlebool">账号登录</span>
       </div>
       <div class="mydetailinfo">
-          <a href="javascript:void;"><span v-text="span[1]" @click="userlogin"></span></a>
+          <a href="javascript:void(0)"><span v-text="span[1]" @click="userlogin"></span></a>
       </div>
     </form>
   </div>
