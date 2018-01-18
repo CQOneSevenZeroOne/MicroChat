@@ -55,7 +55,6 @@ export default {
           success(data){
             // console.log(data)
             _this.obj = JSON.parse(data)[0]
-            console.log(_this.obj)
           }
       })
   }

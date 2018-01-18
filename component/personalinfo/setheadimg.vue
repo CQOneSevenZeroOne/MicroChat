@@ -70,7 +70,7 @@ export default {
           id: id
         },
         success: data => {
-          console.log(data);
+          // console.log(data);
           
           this.img = data.img;
         }

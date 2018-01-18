@@ -176,3 +176,7 @@ a img {
     border: 0;
 }
 .icon-zuojiantou{margin-right: 15px;}
+.weui_cells>a{border-bottom: 1px solid #ccc;}
+.imgleft{margin-left: 10px}
+/* margin-left: 10px; */
+/* .weui_cells>a:last-child{border-bottom:none} */

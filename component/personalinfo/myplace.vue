@@ -18,9 +18,9 @@
     <div class="weui_cells weui_cells_access me-line" _v-4f0a3ae7="">
         <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
             <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                <p _v-4f0a3ae7="">扈冲</p>
+                <p _v-4f0a3ae7="" v-text="obj.userName"></p>
                 <p _v-4f0a3ae7="" class="address">
-                    <span _v-4f0a3ae7="">重庆市九龙坡区科院一号二路大西洋国际大厦&nbsp;&nbsp;</span>
+                    <span _v-4f0a3ae7=""v-text="obj.userAddress">&nbsp;&nbsp;</span>
                 </p>
             </div>
             <div class="" _v-4f0a3ae7=""><i class="iconfont icon-gantanhaozhong"></i></div>
@@ -46,6 +46,32 @@
 .top-back>a{color: #fff}
 .address>span{display: inline-block;width: 300px;font-size: 14px}
 </style>
+<script>
+import $ from "jquery";
+import cookie from "jquery.cookie";
+export default {
+  data(){
+      return{
+        obj:{}
+      }
+  },
+  mounted(){
+      this.id = JSON.parse($.cookie("user")).userId;
+      var _this = this;
+      $.ajax({
+          url:"http://localhost:1701/getuserinfo",
+          type:"get",
+          data:{
+              id:_this.id,
+          },
+          success(data){
+            // console.log(data)
+            _this.obj = JSON.parse(data)[0]
+          }
+      })
+  },
+}
+</script>
 
 
 

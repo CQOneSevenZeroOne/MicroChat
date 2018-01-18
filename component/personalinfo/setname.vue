@@ -44,7 +44,7 @@ export default {
               id:_this.id,
           },
           success(data){
-            console.log(data)
+            // console.log(data)
             _this.obj = JSON.parse(data)[0]
           }
       })

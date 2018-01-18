@@ -47,7 +47,7 @@
                         <p _v-4f0a3ae7="">我的二维码</p>
                     </div>
                     <div class="weui_cell_ft" _v-4f0a3ae7="">
-                        <img class="_align-middle" style="width:25px" src="../../img/personinfo/1499914112624921aaaa7e1a76cf937757f564538142e.jpg" _v-4f0a3ae7="">
+                        <img class="_align-middle" style="width:25px" :src="img1" _v-4f0a3ae7="">
                     </div>
                 </a>
                 <a class="weui_cell" href="#/personalinfo/infomore" _v-4f0a3ae7="">
@@ -76,11 +76,13 @@ import "./infomore/common.css"
 // import "../../template/common.css"
 import $ from "jquery";
 import cookie from "jquery.cookie";
+import img1 from "../../img/personinfo/chat-info-qr.0838167.png";
 export default {
   data(){
       return{
         id:"",
-        obj:{}
+        obj:{},
+        img1:img1
       }
   },
   mounted(){
@@ -93,7 +95,6 @@ export default {
               id:_this.id,
           },
           success(data){
-            console.log(data)
             _this.obj = JSON.parse(data)[0]
           }
       })

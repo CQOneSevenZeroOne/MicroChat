@@ -1,86 +1,87 @@
 <template>
   <div>
     <section class="app-content" style="" _v-c8294afa="">
-        <div class="_full_inner _effect component-me" _v-4f0a3ae7="">
-            <div class="weui_cells weui_cells_access me-line" _v-4f0a3ae7="">
-                <a class="weui_cell" href="#/personalinfo" _v-4f0a3ae7="">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img :src="obj.userImg" _v-4f0a3ae7="" width="60px"> </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="" v-text="obj.userName"></p>
-                        <p _v-4f0a3ae7="">
-                            <span _v-4f0a3ae7="">微信号:&nbsp;&nbsp;</span>
-                            <span _v-4f0a3ae7="" v-text="obj.userNum">yangtao_0215</span>
+        <div class="_full_inner _effect component-me" >
+            <div class="weui_cells weui_cells_access me-line" >
+                <a class="weui_cell" href="#/personalinfo" >
+                    <div class="weui_cell_hd" >
+                        <img :src="obj.userImg"  width="60px"> </div>
+                    <div class="weui_cell_bd weui_cell_primary imgleft" >
+                        <p  v-text="obj.userName"></p>
+                        <p >
+                            <span class="chatunm1">微信号:&nbsp;&nbsp;</span>
+                            <span  v-text="obj.userNum">yangtao_0215</span>
                         </p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7="">
-                        <img class="_align-middle" style="height:25px" src="../../img/personinfo/chat-info-qr.0838167.png" _v-4f0a3ae7=""> </div>
+                    <div class="weui_cell_ft" >
+       
+                        <img class="_align-middle" style="height:25px" :src="imggroup[0]" > </div>
                 </a>
             </div>
-            <div class="weui_cells weui_cells_access" _v-4f0a3ae7="">
-                <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img src="../../img/personinfo/me_more-my-album.6bdfdae.png" alt="" style="width:20px;margin-right:5px;display:block"
-                            _v-4f0a3ae7="">
+            <div class="weui_cells weui_cells_access" >
+                <a class="weui_cell" href="javascript:;" >
+                    <div class="weui_cell_hd" >
+                        <img :src="imggroup[1]" alt="" style="width:20px;margin-right:5px;display:block"
+                            >
                     </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">相册</p>
+                    <div class="weui_cell_bd weui_cell_primary" >
+                        <p >相册</p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7=""></div>
+                    <div class="weui_cell_ft" ></div>
                 </a>
-                <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img src="../../img/personinfo/me_more-my-favorites.a6978b3.png" alt="" style="width:20px;margin-right:5px;display:block"
-                            _v-4f0a3ae7="">
+                <a class="weui_cell" href="javascript:;" >
+                    <div class="weui_cell_hd" >
+                        <img :src="imggroup[2]" alt="" style="width:20px;margin-right:5px;display:block"
+                            >
                     </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">收藏</p>
+                    <div class="weui_cell_bd weui_cell_primary" >
+                        <p >收藏</p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7=""></div>
+                    <div class="weui_cell_ft" ></div>
                 </a>
-                <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img src="../../img/personinfo/me_more-my-bank-card.cd4457b.png" alt="" style="width:20px;margin-right:5px;display:block"
-                            _v-4f0a3ae7="">
+                <a class="weui_cell" href="javascript:;" >
+                    <div class="weui_cell_hd" >
+                        <img :src="imggroup[3]" alt="" style="width:20px;margin-right:5px;display:block"
+                            >
                     </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">钱包</p>
+                    <div class="weui_cell_bd weui_cell_primary" >
+                        <p >钱包</p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7=""></div>
+                    <div class="weui_cell_ft" ></div>
                 </a>
-                <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img src="../../img/personinfo/me_my-card-package-icon.4024a10.png" alt="" style="width:20px;margin-right:5px;display:block"
-                            _v-4f0a3ae7="">
+                <a class="weui_cell" href="javascript:;" >
+                    <div class="weui_cell_hd" >
+                        <img :src="imggroup[4]" alt="" style="width:20px;margin-right:5px;display:block"
+                            >
                     </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">卡包</p>
+                    <div class="weui_cell_bd weui_cell_primary" >
+                        <p >卡包</p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7=""></div>
-                </a>
-            </div>
-            <div class="weui_cells weui_cells_access" _v-4f0a3ae7="">
-                <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img src="../../img/personinfo/me_more-expression.1696ccf.png" alt="" style="width:20px;margin-right:5px;display:block"
-                            _v-4f0a3ae7="">
-                    </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">表情</p>
-                    </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7=""></div>
+                    <div class="weui_cell_ft" ></div>
                 </a>
             </div>
-            <div class="weui_cells weui_cells_access" _v-4f0a3ae7="">
-                <a class="weui_cell" href="javascript:;" _v-4f0a3ae7="" @click="IsQuit">
-                    <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img src="../../img/personinfo/me_more-setting.6e7eefd.png" alt="" style="width:20px;margin-right:5px;display:block"
-                            _v-4f0a3ae7="">
+            <div class="weui_cells weui_cells_access" >
+                <a class="weui_cell" href="javascript:;" >
+                    <div class="weui_cell_hd" >
+                        <img :src="imggroup[5]" alt="" style="width:20px;margin-right:5px;display:block"
+                            >
                     </div>
-                    <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">退出</p>
+                    <div class="weui_cell_bd weui_cell_primary" >
+                        <p >表情</p>
                     </div>
-                    <div class="weui_cell_ft" _v-4f0a3ae7=""></div>
+                    <div class="weui_cell_ft" ></div>
+                </a>
+            </div>
+            <div class="weui_cells weui_cells_access" >
+                <a class="weui_cell" href="javascript:;"  @click="IsQuit">
+                    <div class="weui_cell_hd" >
+                        <img :src="imggroup[6]" alt="" style="width:20px;margin-right:5px;display:block"
+                            >
+                    </div>
+                    <div class="weui_cell_bd weui_cell_primary" >
+                        <p >退出</p>
+                    </div>
+                    <div class="weui_cell_ft" ></div>
                 </a>
             </div>
         </div>
@@ -102,12 +103,20 @@
 <script>
 import $ from "jquery";
 import cookie from "jquery.cookie";
+import img1 from "../../img/personinfo/chat-info-qr.0838167.png";
+import img2 from "../../img/personinfo/me_more-my-album.6bdfdae.png";
+import img3 from "../../img/personinfo/me_more-my-favorites.a6978b3.png";
+import img4 from "../../img/personinfo/me_more-my-bank-card.cd4457b.png";
+import img5 from "../../img/personinfo/me_my-card-package-icon.4024a10.png";
+import img6 from "../../img/personinfo/me_more-expression.1696ccf.png";
+import img7 from "../../img/personinfo/me_more-setting.6e7eefd.png";
 export default {
   data() {
     return {
       id: "",
       obj: {},
-      isShowpopup: false
+      isShowpopup: false,
+      imggroup:[img1,img2,img3,img4,img5,img6,img7]
     };
   },
   mounted() {
@@ -120,7 +129,7 @@ export default {
         id: _this.id
       },
       success(data) {
-        console.log(data);
+        // console.log(data);
         _this.obj = JSON.parse(data)[0];
       }
     });
@@ -177,5 +186,6 @@ export default {
   z-index: 888;
   top:0
 }
+.chatunm1{font-size: 16px}
 </style>
 
