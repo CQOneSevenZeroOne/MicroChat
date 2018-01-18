@@ -1,16 +1,13 @@
 <template>
   <div id="loginbg">
-<<<<<<< HEAD
     <header>
         <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
         <i>|</i>
     </header>
-=======
     <div class="header">
         <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
         <i>|</i>
     </div>
->>>>>>> 8469fe057ceed5b200f9f37f3c77df73413e89a8
     <form class="logform" id="userlog">
       <h3 v-text="titlebool?title[0]:title[1]"></h3>
       <div class="mydetailinfo">
