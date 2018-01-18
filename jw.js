@@ -280,7 +280,7 @@ app.get("/getuserinfo",function(req,res){
     })
     
 })
-//前台提交信息，并向数据库里面的修改
+//前台提交信息，并向数据库里面的修改昵称
 app.get("/changuserName",function(req,res){
 	res.append("Access-Control-Allow-Origin","*");
     //req.body是post传输的数据
@@ -293,6 +293,7 @@ app.get("/changuserName",function(req,res){
     })
     
 })
+//前台往后台存储性别
 app.get("/changuserGender",function(req,res){
 	res.append("Access-Control-Allow-Origin","*");
     //req.body是post传输的数据
@@ -325,6 +326,8 @@ app.get("/changuserGender",function(req,res){
 //     })
 // })
 
-app.listen(1701);
+
+
+
 server.listen(1701);
 console.log("开启服务器");
