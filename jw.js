@@ -266,7 +266,6 @@ function stringNum(ti){
     }
     return ti;
 }
-<<<<<<< HEAD
 
 //----------------------------------huchong-----------------------------------------
 //向数据库获取用户信息，并传给页面
@@ -326,10 +325,6 @@ app.get("/changuserGender",function(req,res){
 //     })
 // })
 
-
-
 app.listen(1701);
-=======
 server.listen(1701);
->>>>>>> 4437353fb9db3cb820ab513645a77c32d44f19ab
 console.log("开启服务器");
