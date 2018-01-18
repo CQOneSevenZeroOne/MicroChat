@@ -7,31 +7,19 @@
       </div>
       <form name="regform" id="userreg">
             <div class="mydetailinfo">
-                <span v-text="span[1]"></span><input type="text" v-model="username" @blur="namenoshow" @focus="namenshow">
-                <i class="clearcon clearconfir" @click="clearconname" v-show="nameisdel">×</i>
-                <em class="messshow" :style="{display:namemessshow?'block':'none'}">用户名已存在</em>
-      </div>
-      <form name="regform" id="userreg">
-            <div class="mydetailinfo">
                 <span v-text="span[1]"></span><input type="text" v-model="username" @blur="namenoshow" @focus="namenshow" placeholder="6-12位字母数字组合" @input="nameisin">
                 <i class="clearcon clearconfir" @click="clearconname" v-show="nameisdel">×</i>
                 <em class="messshow" :style="{display:namemessshow?'block':'none'}">用户名格式错误</em>
                 <em class="messshow" :style="{display:hasnamemessshow?'block':'none'}">用户名已存在</em>
             </div>
             <div class="mydetailinfo">
-                <span v-text="span[6]"></span><input type="text" v-model="usernick">
-                <i class="clearcon clearconfir" @click="clearconname" v-show="nameisdel">×</i>
+                <span v-text="span[6]"></span><input type="text" v-model="usernick" @focus="nicknshow">
+                <i class="clearcon" @click="clearconnick" v-show="nickisdel">×</i>
             </div>
             <div class="mydetailinfo">
                 <span v-text="span[2]"></span> <input class="sex" type="radio" value="0" name="gender" checked v-model="usergender"><i>男</i><input class="sex" v-model="usergender" type="radio" value="1" name="gender"><i>女</i>
             </div>
             <div class="mydetailinfo">
-                <span v-text="span[3]"></span><input type="text" v-model="userphone" @blur="numnoshow" @focus="numnshow">
-                <i class="clearcon" @click="clearconphone" v-show="numisdel">×</i>
-                <em class="messshow" :style="{display:passmessshow?'block':'none'}">号码已存在</em>
-            </div>
-            <div class="mydetailinfo">
-                <span v-text="span[4]"></span><input type="password" v-model="userpass" @blur="passnoshow" @focus="passnshow">
                 <span v-text="span[3]"></span><input type="text" v-model="userphone" @blur="numnoshow" @focus="numnshow" @input="phoneisin">
                 <i class="clearcon" @click="clearconphone" v-show="numisdel">×</i>
                 <em class="messshow" :style="{display:nummessshow?'block':'none'}">电话号码格式错误</em>
@@ -43,20 +31,17 @@
                 <em class="messshow" :style="{display:passmessshow?'block':'none'}">密码格式错误</em>
             </div>
             <div class="mydetailinfo">
-                <a ><span v-text="span[5]" @click="userreg"></span></a>
                 <a href="javascript:void;" class="regbbt"><span v-text="span[5]" @click="userreg"></span></a>
             </div>
             <div class="mydetailinfo">
                 <p>点击上面的注册按钮，即表示你同意<a>《腾讯微信软件许可及服务协议》</a>和<a>《微信隐私保护指引》</a></p>
             </div>
-            <div class="picture" @click="showimg">
             <div class="picture">
                 <div class="weui-uploader__input-box">
                         <input id="uploaderInput" name="userlogo" class="weui-uploader__input" type="file" accept="image/*" multiple="">
                 </div>
             </div>
             <div class="picture">
-                <img class="weui-uploader__file" :src="str" alt="  "/>
                 <img class="weui-uploader__file" src='' alt="  "/>
             </div>
       </form>
@@ -99,6 +84,7 @@ export default {
           nameisdel:false,
           passisdel:false,
           numisdel:false,
+          nickisdel:false,
           str:"",
           alluser:[]//所有已注册用户信息
       }
@@ -125,6 +111,9 @@ export default {
     clearconphone(){
         this.userphone="";
     },
+    clearconnick(){
+        this.usernick="";
+    },
     //显示清空小图标
     namenshow(){
       this.nameisdel=true;
@@ -134,6 +123,9 @@ export default {
     },
     numnshow(){
       this.numisdel=true;
+    },
+    nicknshow(){
+        this.nickisdel=true;
     },
     //判断数据库里面是否存在相同的微信号
     nameisin(){
@@ -251,7 +243,7 @@ input{border:0;outline: none;background: #FFFFFF;}
     color:white;
 }
 #regbg .header a{color: white;}
-#regbg .header a,#regbg header i,#regbg header span{margin-left:5%;float:left;display: block;height:100%;line-height: 50px;}
+#regbg .header a,#regbg .header i,#regbg .header span{margin-left:5%;float:left;display: block;height:100%;line-height: 50px;}
 #regbg .header i{color:#2B2C31;width:2px;}
 .regform{overflow: hidden;position: relative;}
 .mydetailinfo{position:relative;margin:0 4%;height:10%;width:auto;font-size: 18px;line-height: 100%;border-bottom: 1px solid #D8D8D8;overflow: hidden;}

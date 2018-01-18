@@ -68,7 +68,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .group{
   margin-top:14px;
 }

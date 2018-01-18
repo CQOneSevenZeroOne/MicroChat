@@ -1,9 +1,5 @@
 <template>
   <div id="loginbg">
-    <header>
-        <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
-        <i>|</i>
-    </header>
     <div class="header">
         <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
         <i>|</i>
