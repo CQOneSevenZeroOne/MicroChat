@@ -3,7 +3,7 @@
         <div class="_cover-top" _v-f50d4fca="" _v-70bceff9="">
         <a href="#/totaltab/mine">
             <div class="top-back" _v-f50d4fca="">
-                <div class="_ellipsis iconfont icon-return-arrow v-link-active" _v-f50d4fca="">我</div>
+                <div><i data-v-1eee6b3e="" class="iconfont icon-zuojiantou"></i>个人信息</div>
             </div>
         </a>
             <div class="top-other" _v-f50d4fca="">
@@ -13,7 +13,7 @@
             </div>
             <div class="top-title _effect" _v-f50d4fca="">
                 <p _v-f50d4fca="">
-                    <span _v-f50d4fca="">个人信息</span>
+                    <span _v-f50d4fca=""></span>
                 </p>
             </div>
         </div>
@@ -71,7 +71,9 @@
 </template>
 
 <script>
-import "../../template/common.css"
+
+import "./infomore/common.css"
+// import "../../template/common.css"
 import $ from "jquery";
 import cookie from "jquery.cookie";
 export default {
@@ -102,6 +104,7 @@ export default {
 }
 </script>
 
+/* import "../../template/common.css" */
 <style scoped>
 .information {
   margin-top: -1px;

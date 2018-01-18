@@ -2,7 +2,7 @@
   <div>
     <div class="_cover-top" _v-f50d4fca="" _v-2747733a="">
         <div class="top-back" _v-f50d4fca="">
-            <a href="#/personalinfo"><div class="_ellipsis iconfont icon-return-arrow v-link-active" _v-f50d4fca="">个人信息</div></a>
+            <a href="#/personalinfo"><div><i data-v-1eee6b3e="" class="iconfont icon-zuojiantou"></i>个人信息</div></a>
         </div>
     </div>
     <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cells weui_cells_access">

@@ -2,7 +2,7 @@
     <div class="father-box">
         <div class="_cover-top" _v-f50d4fca="" _v-2747733a="">
             <div class="top-back" _v-f50d4fca="">
-                <a href="#/personalinfo"><div class="_ellipsis iconfont icon-return-arrow v-link-active" _v-f50d4fca="">取消</div></a>
+                <a href="#/personalinfo"><div><i data-v-1eee6b3e="" class="iconfont icon-zuojiantou"></i></div></a>
             </div>
             <div class="top-other" _v-f50d4fca="">
                 <div slot="right" class="_align-right" _v-2747733a="">
@@ -11,7 +11,7 @@
             </div>
             <div class="top-title _effect" _v-f50d4fca="">
                 <p _v-f50d4fca="">
-                    <span _v-f50d4fca="">设置名字</span>
+                    <span _v-f50d4fca=""></span>
                 </p>
             </div>
         </div>

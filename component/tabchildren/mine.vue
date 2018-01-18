@@ -5,7 +5,7 @@
             <div class="weui_cells weui_cells_access me-line" _v-4f0a3ae7="">
                 <a class="weui_cell" href="#/personalinfo" _v-4f0a3ae7="">
                     <div class="weui_cell_hd" _v-4f0a3ae7="">
-                        <img :src="obj.userImg" _v-4f0a3ae7=""> </div>
+                        <img :src="obj.userImg" _v-4f0a3ae7="" width="60px"> </div>
                     <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
                         <p _v-4f0a3ae7="" v-text="obj.userName"></p>
                         <p _v-4f0a3ae7="">
