@@ -2,11 +2,11 @@
     <div class="father-box">
         <div class="_cover-top" _v-f50d4fca="" _v-2747733a="">
             <div class="top-back" _v-f50d4fca="">
-                <a href="#/personalinfo"><div><i data-v-1eee6b3e="" class="iconfont icon-zuojiantou"></i></div></a>
+                <a href="#/personalinfo/infomore/infomoremain"><div><i data-v-1eee6b3e="" class="iconfont icon-zuojiantou"></i></div></a>
             </div>
             <div class="top-other" _v-f50d4fca="">
                 <div slot="right" class="_align-right" _v-2747733a="">
-                    <a href="#/personalinfo/main"><span v-show="isShowfinish" @click="finish" class="green1">完成</span></a>
+                    <a href="#/personalinfo/infomore/infomoremain"><span v-show="isShowfinish" @click="finish" class="green1">完成</span></a>
                 </div>
             </div>
             <div class="top-title _effect" _v-f50d4fca="">
@@ -17,7 +17,7 @@
         </div>
          <div class="bg-div">
                 <div class="setname">
-                    <input type="text" v-model="obj.userName" @input="textchang">
+                    <input type="text" v-model="obj.userAddress" @input="textchang">
                     <span @click="emptycontent"><i class="iconfont icon-shanchu4" ></i></span>
                 </div>
         </div>       
@@ -38,6 +38,7 @@ export default {
   mounted(){
       this.id = JSON.parse($.cookie("user")).userId;
       var _this = this;
+      console.log(1)
       $.ajax({
           url:"http://localhost:1701/getuserinfo",
           type:"get",
@@ -63,10 +64,10 @@ export default {
             // console.log(1111)
             var _this = this
             $.ajax({
-                url:"http://localhost:1701/changuserName",
+                url:"http://localhost:1701/changuserAddress",
                 type:"get",
                 data:{
-                    name:_this.obj.userName,
+                    address:_this.obj.userAddress,
                     id:_this.obj.userId
                 },
                 success(data){

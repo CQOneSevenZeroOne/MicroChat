@@ -35,6 +35,10 @@ import infomore from "./component/personalinfo/infomore.vue"
 import myplace from "./component/personalinfo/myplace.vue"
 import sex from "./component/personalinfo/infomore/sex.vue"
 import infomoremain from "./component/personalinfo/infomore/infomoremain.vue"
+import setaddress from "./component/personalinfo/infomore/setaddress.vue"
+
+
+
 
 
 
@@ -116,6 +120,9 @@ var router = new VueRouter({
             }, {
                 path: "infomoremain",
                 component: infomoremain
+            }, {
+                path: "setaddress",
+                component: setaddress
             }]
         }, {
             path: "myplace",
@@ -150,12 +157,12 @@ var router = new VueRouter({
 
 //配置状态
 var store = new Vuex.Store({
-    state:{
-        bool:true,
-        myId:"",
-        youId:"",
-        friend:0,
-        fremark:""
+    state: {
+        bool: true,
+        myId: "",
+        youId: "",
+        friend: 0,
+        fremark: ""
     }
 })
 

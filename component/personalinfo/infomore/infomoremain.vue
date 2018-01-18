@@ -12,7 +12,7 @@
         </div> 
         <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_ft"><span v-text="obj.userGender==0?'男':'女'"></span></div>
       </a>
-      <a data-v-6e1130aa="" href="javascript:;" _v-4f0a3ae7="" class="weui_cell">
+      <a data-v-6e1130aa="" href="#/personalinfo/infomore/setaddress" _v-4f0a3ae7="" class="weui_cell">
         <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_bd weui_cell_primary">
           <p data-v-6e1130aa="" _v-4f0a3ae7="">地区</p>
         </div> 

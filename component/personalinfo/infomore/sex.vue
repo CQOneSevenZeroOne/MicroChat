@@ -6,7 +6,7 @@
             </div>
             <div class="top-other" _v-f50d4fca="">
                 <div slot="right" class="_align-right" _v-2747733a="">
-                    <span _v-2747733a=""><span  @click="finish">完成</span></span>
+                    <a href="#/personalinfo/infomore" class="green1"><span  @click="finish" v-show="isShowFinish">完成</span></a>
                 </div>
             </div>
             <div class="top-title _effect" _v-f50d4fca="">
@@ -38,7 +38,8 @@ export default {
   data(){
       return{
         id:"",
-        obj:{}
+        obj:{},
+        isShowFinish:false
       }
   },
   mounted(){
@@ -60,6 +61,7 @@ export default {
       Show(id){
         //   console.log(id)
           this.obj.userGender = id;
+          this.isShowFinish = true
       },
       finish(){
             var _this = this
@@ -80,5 +82,9 @@ export default {
 </script>
 
 <style scoped>
+.green1{color:rgb(4, 248, 4)}
 .top-back>a{color: #fff}
+.icon-xuanzhong{color:rgb(14, 245, 14)}
+/* .icon-xuanzhong{color:red} */
+
 </style>

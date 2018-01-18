@@ -328,6 +328,17 @@ app.get("/changuserGender",function(req,res){
     })
     
 })
+app.get("/changuserAddress",function(req,res){
+	res.append("Access-Control-Allow-Origin","*");
+    //req.body是post传输的数据
+    let sql =`UPDATE userinfo SET userAddress='${req.query.address}' WHERE userId=${req.query.id}`;
+    connection.query(sql,function(error,results,fields){
+            if (error) throw error;
+            // var str = JSON.stringify(results)
+            res.send("修改成功")
+    })
+    
+})
 
 
 // app.get("/aggreAdd",function(req,res){

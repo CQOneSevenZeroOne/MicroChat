@@ -19,7 +19,7 @@
         </div>
     <section class="app-content" style="" _v-c8294afa="">
         <div class="_full_inner _effect component-me" _v-4f0a3ae7="">
-            <div class="weui_cells weui_cells_access me-line" _v-4f0a3ae7="">
+            <div class="weui_cells weui_cells_access me-line margin1" _v-4f0a3ae7="">
                 <a class="weui_cell" href="#/personalinfo/setheadimg" _v-4f0a3ae7="">
                     <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
                         <p _v-4f0a3ae7="">头像</p>
@@ -31,7 +31,7 @@
             <div class="weui_cells weui_cells_access information" _v-4f0a3ae7="">
                 <a class="weui_cell" href="#/personalinfo/setname" _v-4f0a3ae7="">
                     <div class="weui_cell_bd weui_cell_primary" _v-4f0a3ae7="">
-                        <p _v-4f0a3ae7="">名字</p>
+                        <p _v-4f0a3ae7="">昵称</p>
                     </div>
                     <div class="weui_cell_ft" _v-4f0a3ae7="" v-text="obj.userName"></div>
                 </a>
@@ -146,4 +146,5 @@ a {
 .chatnum {
   color: #888;
 }
+.margin1{margin-bottom:1px}
 </style>

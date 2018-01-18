@@ -15,15 +15,14 @@
                 </p>
             </div>
         </div>
-        <div class="bigheadimg"><img :src="obj.userImg" alt=""></div>
+        <div class="bigheadimg"><img :src="obj.userImg" @click="Showheadimg"></div>
         <transition name="abc">
-            
             <div class="headimg-pop" v-show="isShowheadimg">
                 <div class="headimg-all">
                     <div>
-                        <a href="">本地上传</a>
-                        <a href="">查看上一张图片</a>
-                        <a href="">保存图片</a>
+                        <a>本地上传</a>
+                        <a>查看上一张图片</a>
+                        <a>保存图片</a>
                     </div>
                     <div class="cancel"><a @click="Hiddenheadimg">取消</a>
                     </div>
@@ -36,6 +35,7 @@
 <script>
 import $ from "jquery";
 import cookie from "jquery.cookie";
+import "../../template/animate.css"
 export default {
   data(){
       return{
@@ -97,6 +97,7 @@ export default {
 <style scoped>
 .setimg-box {
   background: #000;
+  height: 667px;
 }
 .headimg-pop {
   width: 100%;
@@ -145,3 +146,7 @@ export default {
   top:0
 }
 </style>
+<style scoped>
+/* .father-box{height:100%;} */
+</style>
+

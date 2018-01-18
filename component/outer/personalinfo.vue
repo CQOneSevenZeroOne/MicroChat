@@ -16,7 +16,7 @@ export default {
 }
 </script>
 <style scoped>
-.father-box{height: 100%;}
+/* .father-box{height: 100%;} */
 </style>
 
 
