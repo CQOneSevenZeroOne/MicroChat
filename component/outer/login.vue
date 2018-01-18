@@ -1,9 +1,16 @@
 <template>
   <div id="loginbg">
+<<<<<<< HEAD
     <header>
         <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
         <i>|</i>
     </header>
+=======
+    <div class="header">
+        <a href="#/reglog"><b class="iconfont icon-zuojiantou"></b></a>
+        <i>|</i>
+    </div>
+>>>>>>> 8469fe057ceed5b200f9f37f3c77df73413e89a8
     <form class="logform" id="userlog">
       <h3 v-text="titlebool?title[0]:title[1]"></h3>
       <div class="mydetailinfo">
@@ -21,7 +28,7 @@
           <span @click="tophone" v-show="!titlebool">账号登录</span>
       </div>
       <div class="mydetailinfo">
-          <a :href="isLogin?'#/totaltab':'#/login'"><span v-text="span[1]" @click="userlogin"></span></a>
+          <a href="javascript:void;"><span v-text="span[1]" @click="userlogin"></span></a>
       </div>
     </form>
   </div>
@@ -88,10 +95,12 @@ export default {
               if(self.userpass==data[0].userPass){
                 var obj={
                   "userId":data[0].userId,
-                  "userName":data[0].userName
+                  "userName":data[0].userName,
+                  "userNum":data[0].userNum
                   };
                 $.cookie("user",JSON.stringify(obj));
                 self.isLogin=true;
+                self.$router.push({ path: '/totaltab/wechat' })
               }else{
                 self.passmessshow=true;
               }  
@@ -115,11 +124,14 @@ export default {
             }else{//存在
               if(self.userpass==data[0].userPass){
                 var obj={
+                  "userNum":data[0].userNum,
                   "userId":data[0].userId,
-                  "userName":data[0].userName
+                  "userName":data[0].userName               
                   };
                 $.cookie("user",JSON.stringify(obj));
-                self.isLogin=true;
+                console.log($.cookie("user"))
+                //self.isLogin=true;
+                self.$router.push({ path: '/totaltab/wechat' })
               }else{
                 self.passmessshow=true;
               }  
@@ -138,15 +150,15 @@ a{text-decoration: none;display: block;}
 i{font-style: normal;}
 input{border:0;outline: none;background: #FFFFFF;}
 #loginbg{width:100%;height:100%;background: #FFFFFF;}
-#loginbg header{
+#loginbg .header{
     background: #393A3F;
     height:7%;
     font-size: 16px;
     color:white;
 }
-#loginbg header a{color: white;}
-#loginbg header a,#loginbg header i,#loginbg header span{margin-left:5%;float:left;display: block;height:100%;line-height: 50px;}
-#loginbg header i{color:#2B2C31;width:2px;}
+#loginbg .header a{color: white;}
+#loginbg .header a,#loginbg header i,#loginbg header span{margin-left:5%;float:left;display: block;height:100%;line-height: 50px;}
+#loginbg .header i{color:#2B2C31;width:2px;}
 .logform{overflow: hidden;}
 .logform h3{font-size: 20px;color: #292929;text-align: center;height:16%;line-height: 64px;font-weight: 600;}
 .mydetailinfo{position:relative;margin:0 8%;height:10%;width:auto;font-size: 18px;line-height: 100%;border-bottom: 1px solid #D8D8D8;overflow: hidden;}
