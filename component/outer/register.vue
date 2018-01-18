@@ -38,11 +38,11 @@
             </div>
             <div class="picture">
                 <div class="weui-uploader__input-box">
-                        <input id="uploaderInput" name="userlogo" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+                        <input id="uploaderInput" name="userlogo" class="weui-uploader__input" type="file" accept="image/*" multiple="" @change="showuserimg">
                 </div>
             </div>
             <div class="picture">
-                <img class="weui-uploader__file" src='' alt="  "/>
+                <img class="weui-uploader__file" src='' alt="  " id="upuserpic"/>
             </div>
       </form>
   </div>
@@ -65,6 +65,7 @@ function upload(){
         });
 	return src;
 }
+
 export default {
   data(){
       return {
@@ -174,6 +175,17 @@ export default {
         }
       this.numisdel=false;
     },
+    //上传头像显示图片
+    showuserimg(){
+        var uploaderInput = $("#uploaderInput");
+        var imgFile = uploaderInput[0].files[0];
+        var fr = new FileReader();
+        fr.onload = function() {
+            var pic=$("#upuserpic");
+            pic[0].src = fr.result;
+        };
+        fr.readAsDataURL(imgFile);  
+    },
     //注册按钮事件
     userreg(){
           if(this.username && this.userpass && this.usergender && this.userphone && this.userpass){
@@ -181,7 +193,7 @@ export default {
                     var self=this;
                     var path=upload();
                     if(path[0]==''){
-                        this.str='user.jpg';
+                        this.str='User.jpg';
                     }else{
                         this.str=path[0];
                     }
