@@ -1,6 +1,5 @@
 <template>
   <div class="maillist">
-    <searchbar></searchbar>
      <a :href="i.href" class="weui-media-box weui-media-box_appmsg" v-for="i in arr1">
         <div class="weui-media-box__hd img1">
             <img class="weui-media-box__thumb" :src="i.img">
