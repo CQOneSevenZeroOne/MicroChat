@@ -348,12 +348,5 @@ app.get("/changuserGender",function(req,res){
 //             res.send(JSON.stringify(results));
 //     })
 // })
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 0ce9d9b701a37055b2ca8f264c9d07f716ff0fae
 server.listen(1701);
 console.log("开启服务器");

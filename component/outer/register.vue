@@ -31,7 +31,7 @@
                 <em class="messshow" :style="{display:passmessshow?'block':'none'}">密码格式错误</em>
             </div>
             <div class="mydetailinfo">
-                <a href="javascript:void;" class="regbbt"><span v-text="span[5]" @click="userreg"></span></a>
+                <a href="javascript:void(0)" class="regbbt"><span v-text="span[5]" @click="userreg"></span></a>
             </div>
             <div class="mydetailinfo">
                 <p>点击上面的注册按钮，即表示你同意<a>《腾讯微信软件许可及服务协议》</a>和<a>《微信隐私保护指引》</a></p>
