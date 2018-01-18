@@ -50,6 +50,7 @@ export default {
     }
     .weui-tabbar{
         position: fixed;
+        bottom:-1px;
         
     }
 </style>
