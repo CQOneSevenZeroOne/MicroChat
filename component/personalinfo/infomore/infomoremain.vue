@@ -10,13 +10,13 @@
         <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_bd weui_cell_primary">
           <p data-v-6e1130aa="" _v-4f0a3ae7="">性别</p>
         </div> 
-        <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_ft"><span v-text="obj.userId==0?'男':'女'"></span></div>
+        <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_ft"><span v-text="obj.userGender==0?'男':'女'"></span></div>
       </a>
       <a data-v-6e1130aa="" href="javascript:;" _v-4f0a3ae7="" class="weui_cell">
         <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_bd weui_cell_primary">
           <p data-v-6e1130aa="" _v-4f0a3ae7="">地区</p>
         </div> 
-        <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_ft"><span v-text="obj.Address"></span></div>
+        <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_ft"><span v-text="obj.userAddress"></span></div>
       </a>
       <a data-v-6e1130aa="" href="javascript:;" _v-4f0a3ae7="" class="weui_cell">
         <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_bd weui_cell_primary">
@@ -55,6 +55,7 @@ export default {
           success(data){
             // console.log(data)
             _this.obj = JSON.parse(data)[0]
+            console.log(_this.obj)
           }
       })
   }

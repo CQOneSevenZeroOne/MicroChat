@@ -3,8 +3,6 @@ import "weui";
 import "./font/iconfont.css";
 import "./font/iconfont1.css";
 import "./template/base.css";
-import "./template/common.css"
-
 //路由
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
