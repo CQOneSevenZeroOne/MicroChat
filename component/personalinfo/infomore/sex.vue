@@ -2,7 +2,7 @@
     <div class="father-box">
         <div class="_cover-top" _v-f50d4fca="" _v-2747733a="">
             <div class="top-back" _v-f50d4fca="">
-                <a href="#/personalinfo/infomore"><div class="_ellipsis iconfont icon-return-arrow v-link-active" _v-f50d4fca="">取消</div></a>
+                <a href="#/personalinfo/infomore"><div><i data-v-1eee6b3e="" class="iconfont icon-zuojiantou"></i>设置性别</div></a>
             </div>
             <div class="top-other" _v-f50d4fca="">
                 <div slot="right" class="_align-right" _v-2747733a="">
@@ -11,7 +11,7 @@
             </div>
             <div class="top-title _effect" _v-f50d4fca="">
                 <p _v-f50d4fca="">
-                    <span _v-f50d4fca="">设置性别</span>
+                    <span _v-f50d4fca=""></span>
                 </p>
             </div>
         </div>
@@ -20,13 +20,13 @@
                 <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_bd weui_cell_primary">
                     <p data-v-6e1130aa="" _v-4f0a3ae7="">男</p>
                 </div>
-                <div v-show="obj.userGender==0" >1</div>
+                <div v-show="obj.userGender==0" ><i class="iconfont icon-xuanzhong"></i></div>
             </a>
             <a data-v-6e1130aa=""  _v-4f0a3ae7="" class="weui_cell" @click="Show(1)">
                 <div data-v-6e1130aa="" _v-4f0a3ae7="" class="weui_cell_bd weui_cell_primary">
                     <p data-v-6e1130aa="" _v-4f0a3ae7="">女</p>
                 </div>
-                <div data-v-6e1130aa="" _v-4f0a3ae7="" v-show="obj.userGender==1">1</div>
+                <div data-v-6e1130aa="" _v-4f0a3ae7="" v-show="obj.userGender==1"><i class="iconfont icon-xuanzhong"></i></div>
             </a>
         </div>
     </div>
